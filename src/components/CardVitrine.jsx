@@ -3,7 +3,7 @@ import React from 'react';
 // import { useContext } from 'react';
 
 
-const CardVitrine = (props)=> {
+const CardVitrine = (props) => {
 
   // const { AddItemCart } = useContext(CartContext)
 
@@ -20,20 +20,21 @@ const CardVitrine = (props)=> {
   // }
 
   return (
-    <div className="card w-72 bg-base-100 shadow-xl">
-    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-    <div className="card-body">
-      <h2 className="card-title">
-        {props.nome}
-        <div className="badge badge-secondary">NEW</div>
-      </h2>
-      <p>{props.descricao}</p>
-      <div className="card-actions justify-end">
-        <div className="badge badge-outline">Fashion</div> 
-        <div className="badge badge-outline">Products</div>
+    <div className="flex items-center card w-64 bg-base-100 shadow-xl">
+      <figure><img src={props.foto} alt="Shoes" /></figure>
+      <div className="card-body">
+        <h2 className="card-title">
+          {props.nome}
+          <div className="badge badge-secondary">NEW</div>
+        </h2>
+        <p>{props.descricao}</p>
+        <div className="card-actions justify-end">
+          <div className="badge badge-outline">Fashion</div>
+          <div className="badge badge-outline">Products</div>
+        </div>
       </div>
+      <button className="w-10/12 px-2 mb-2 btn btn-primary">Primary</button>
     </div>
-  </div>
 
   );
 }
@@ -46,4 +47,3 @@ export default CardVitrine;
   <Styled.Title>{props.nome}</Styled.Title>
   <Styled.Description>{props.descricao}</Styled.Description> */}
 
-  

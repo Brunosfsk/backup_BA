@@ -4,7 +4,7 @@ const CartContext = createContext();
 
 function CartProvider(props) {
 
-    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('@Service:cart')) || []);
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('@Service:cart')) || ["testeItem"]);
     const [totalCart, setTotalCart] = useState(localStorage.getItem('@Service:cartTotal') || 0);
 
     function AddItemCart(item) {
@@ -67,6 +67,6 @@ function CartProvider(props) {
 
 }
 
-export { CartContext, CartProvider }
+export default { CartContext, CartProvider }
 
 // Criar o armazenamento de dados no localstorage do pedido

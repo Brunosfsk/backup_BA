@@ -10,4 +10,7 @@ export default {
   plugins: [require("daisyui")],
 }
 
+// module.exports = {
+//   important: true,
+// }
 

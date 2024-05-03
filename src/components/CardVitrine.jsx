@@ -1,23 +1,23 @@
 import React from 'react';
-// import { CartContext } from '../../contexts/contextCart';
-// import { useContext } from 'react';
+import { CartContext } from '../../src/contexts/contextCart';
+import { useContext } from 'react';
 
 
 const CardVitrine = (props) => {
 
-  // const { AddItemCart } = useContext(CartContext)
+  const { AddItemCart } = useContext(CartContext)
 
-  // function AddItem() {
+  function AddItem() {
 
-  //   const item = {
-  //     id: props.id,
-  //     nome: props.nome,
-  //     preco: props.preco,
-  //     foto: props.foto,
-  //     qtd: 1
-  //   }
-  //   AddItemCart(item);
-  // }
+    const item = {
+      id: props.id,
+      nome: props.nome,
+      preco: props.preco,
+      foto: props.foto,
+      qtd: 1
+    }
+    AddItemCart(item);
+  }
 
   return (
     <div className="flex items-center card w-64 bg-base-100 shadow-xl">
@@ -33,7 +33,7 @@ const CardVitrine = (props) => {
           <div className="badge badge-outline">Products</div>
         </div>
       </div>
-      <button className="w-10/12 px-2 mb-2 btn btn-primary">Primary</button>
+      <button onClick={AddItem} className="w-10/12 px-2 mb-2 btn btn-primary">Primary</button>
     </div>
 
   );

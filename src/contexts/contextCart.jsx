@@ -4,7 +4,7 @@ export const CartContext = createContext();
 
 function CartProvider(props) {
   const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem('@Service:cart')) || ['testeItem'],
+    JSON.parse(localStorage.getItem('@Service:cart')) || [],
   );
   const [totalCart, setTotalCart] = useState(
     localStorage.getItem('@Service:cartTotal') || 0,

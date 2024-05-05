@@ -1,20 +1,19 @@
-import React from 'react';
-import CardVitrine from '../../components/CardVitrine';
-import Footer from '../../components/Footer';
+
 import { produtos } from '../../dados';
-import Header from '../../components/Header';
-import DrawerCart from '../../components/DrawerCart/DrawerCart';
+import Body from './components/Body';
+import Footer from './components/Footer';
+import Header from './components/Header/Header';
 
 const Home = () => {
   return (
     <div>
-      <Header showMenu={true} titleHeader="Seja Bem-Vindo" />
+      <Header titleHeader="Seja Bem-Vindo" />
       <h2 className="text-2xl mt-12 text-center">
         Faça sua escolha e adicione no seu carrinho de compras
       </h2>
       <div className="flex flex-wrap justify-center gap-4">
         {produtos.map((prod) => (
-          <CardVitrine
+          <Body
             key={prod.id}
             id={prod.id}
             nome={prod.nome}
@@ -25,7 +24,6 @@ const Home = () => {
         ))}
       </div>
       <Footer />
-      {/* <DrawerCart /> */}
     </div>
   );
 };

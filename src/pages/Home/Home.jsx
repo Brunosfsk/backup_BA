@@ -1,27 +1,13 @@
-
-import { produtos } from '../../dados';
-import Body from './components/Body';
+import Body from './components/Body/Body';
 import Footer from './components/Footer';
 import Header from './components/Header/Header';
 
 const Home = () => {
   return (
-    <div>
-      <Header titleHeader="Seja Bem-Vindo" />
-      <h2 className="text-2xl mt-12 text-center">
-        Faça sua escolha e adicione no seu carrinho de compras
-      </h2>
-      <div className="flex flex-wrap justify-center gap-4">
-        {produtos.map((prod) => (
-          <Body
-            key={prod.id}
-            id={prod.id}
-            nome={prod.nome}
-            descricao={prod.descricao}
-            preco={prod.preco}
-            foto={prod.foto}
-          />
-        ))}
+    <div className="h-dvh flex flex-col justify-between ">
+      <div>
+        <Header titleHeader="Seja Bem-Vindo" />
+        <Body/>
       </div>
       <Footer />
     </div>

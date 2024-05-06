@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { CartContext } from '../../../../contexts/contextCart';
+import { CartContext } from '../contexts/cart';
 
-function ProductCart({ id, nome, preco, foto, qtd, showBtn }) {
+function ProductDetails({ id, nome, preco, foto, qtd, showBtn }) {
   const { AddItemCart, RemoveItemCart } = useContext(CartContext);
 
   function AddItem() {
@@ -62,4 +62,4 @@ function ProductCart({ id, nome, preco, foto, qtd, showBtn }) {
   );
 }
 
-export default ProductCart;
+export default ProductDetails;

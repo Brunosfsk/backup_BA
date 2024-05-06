@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import Footer from '../../components/Footer';
-import { CartContext } from '../../contexts/contextCart';
-import ProductCart from '../Home/components/Header/ProductCard';
+import { CartContext } from '../../contexts/cart';
+import ProductDetails from '../../components/ProductDetails';
 
 function Checkout() {
-  const { cartItems } = useContext(CartContext);
+  const { totalCart, cartItems } = useContext(CartContext);
 
   return (
     <section className="h-dvh flex flex-col justify-between">
@@ -53,7 +53,7 @@ function Checkout() {
             <h3 className="text-xl">Resumo do Pedido</h3>
             {cartItems.map((item) => {
               return (
-                <ProductCart
+                <ProductDetails
                   key={item.id}
                   id={item.id}
                   foto={item.foto}
@@ -70,10 +70,10 @@ function Checkout() {
               <div className="bg-base-100 flex flex-col gap-4">
                 <h2 className="text-2xl font-medium">Total</h2>
                 <p className="text-xl">
-                  {new Intl.NumberFormat('pt-BR', {
+                  {totalCart.toLocaleString('pt-br', {
                     style: 'currency',
                     currency: 'BRL',
-                  }).format(77)}
+                  })}
                 </p>
               </div>
               <div className="divider"></div>

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import ProductCart from './ProductCard';
 import { ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../../../contexts/contextCart';
+import { CartContext } from '../../../../contexts/cart';
+import ProductDetails from '../../../../components/ProductDetails';
 
 export default function DrawerCart() {
   const { cartItems, totalCart } = useContext(CartContext);
@@ -25,7 +25,7 @@ export default function DrawerCart() {
           <ul className=" flex flex-col gap-2 h-4/5 overflow-auto">
             {cartItems.map((item) => {
               return (
-                <ProductCart
+                <ProductDetails
                   showBtn
                   key={item.id}
                   id={item.id}
@@ -43,7 +43,6 @@ export default function DrawerCart() {
               <span className="text-sm font-medium">Total do pedido</span>
               <br />
               <span className="text-4xl font-medium">
-                R${' '}
                 {totalCart.toLocaleString('pt-br', {
                   style: 'currency',
                   currency: 'BRL',

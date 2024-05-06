@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react';
 
-export const DadosEntregaContext = createContext();
+export const DeliveryDetailsContext = createContext();
 
-function ContextDadosEntrega(props) {
+function deliveryDetailsProvider(props) {
   const [dadosEntrega, setDadosEntrega] = useState([]);
 
   function addDados(item) {
@@ -17,4 +17,4 @@ function ContextDadosEntrega(props) {
   );
 }
 
-export default ContextDadosEntrega;
+export default deliveryDetailsProvider;

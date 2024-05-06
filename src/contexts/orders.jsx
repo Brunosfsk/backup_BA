@@ -1,13 +1,12 @@
 import { createContext, useState } from 'react';
 
-export const PedidoContext = createContext();
+export const OrdersContext = createContext();
 
-function ContextPedidos(props) {
+function OrdersProvider(props) {
   const [pedido, setPedido] = useState([]);
 
   function addPedido(item) {
     setPedido(item);
-    // console.log(pedido)
   }
 
   return (
@@ -17,4 +16,4 @@ function ContextPedidos(props) {
   );
 }
 
-export default ContextPedidos;
+export default OrdersProvider;

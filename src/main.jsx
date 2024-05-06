@@ -6,9 +6,8 @@ import Login from './pages/login/Login';
 import { AuthProvider } from './contexts/auth';
 import SignUp from './pages/signUp/SignUp';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-import CartProvider from './contexts/contextCart';
 import Checkout from './pages/Checkout/Checkout';
+import CartProvider from './contexts/cart';
 
 const router = createBrowserRouter([
   {

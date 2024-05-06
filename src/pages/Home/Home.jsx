@@ -1,5 +1,5 @@
+import Footer from '../../components/Footer';
 import Body from './components/Body/Body';
-import Footer from './components/Footer';
 import Header from './components/Header/Header';
 
 const Home = () => {

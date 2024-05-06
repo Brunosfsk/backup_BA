@@ -43,7 +43,7 @@ export default function DrawerCart() {
               <br />
               <span className="text-4xl font-medium">R$ {totalCart}</span>
             </h3>
-            <Link to="/login" className="btn btn-primary">
+            <Link to="/checkout" className="btn btn-primary">
               Finalizar compra
             </Link>
           </div>

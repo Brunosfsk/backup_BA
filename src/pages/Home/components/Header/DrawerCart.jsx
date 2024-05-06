@@ -21,11 +21,12 @@ export default function DrawerCart() {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="menu min-h-full bg-base-200 text-base-content justify-between p-4 pr-8 w-80">
-          <ul className=" flex flex-col gap-2">
+        <div className="menu h-full bg-base-200 text-base-content justify-between p-4 pr-8 w-96 ">
+          <ul className=" flex flex-col gap-2 h-4/5 overflow-auto">
             {cartItems.map((item) => {
               return (
                 <ProductCart
+                  showBtn
                   key={item.id}
                   id={item.id}
                   foto={item.foto}
@@ -37,11 +38,17 @@ export default function DrawerCart() {
             })}
           </ul>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col justify-end gap-3 h-1/5">
             <h3>
               <span className="text-sm font-medium">Total do pedido</span>
               <br />
-              <span className="text-4xl font-medium">R$ {totalCart}</span>
+              <span className="text-4xl font-medium">
+                R${' '}
+                {totalCart.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </span>
             </h3>
             <Link to="/checkout" className="btn btn-primary">
               Finalizar compra

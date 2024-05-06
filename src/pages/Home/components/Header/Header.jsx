@@ -1,4 +1,4 @@
-import DrawerCart from './DrawerCart/DrawerCart';
+import DrawerCart from './DrawerCart';
 
 function Header({ titleHeader }) {
   return (

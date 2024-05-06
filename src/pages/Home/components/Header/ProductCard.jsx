@@ -1,43 +1,38 @@
 import { useContext } from 'react';
-import { CartContext } from '../../../../../contexts/contextCart';
+import { CartContext } from '../../../../contexts/contextCart';
 
-
-function ProductCart(props) {
+function ProductCart({ id, nome, preco, foto, qtd, showBtn }) {
   const { AddItemCart, RemoveItemCart } = useContext(CartContext);
 
   function AddItem() {
     const item = {
-      id: props.id,
-      nome: props.nome,
-      preco: props.preco,
-      foto: props.foto,
+      id: id,
+      nome: nome,
+      preco: preco,
+      foto: foto,
       qtd: 1,
     };
     AddItemCart(item);
   }
 
   function RemoveItem() {
-    RemoveItemCart(props.id);
+    RemoveItemCart(id);
   }
 
-  const totalItem = props.preco * props.qtd;
+  const totalItem = preco * qtd;
 
   return (
     <div className="p-4 border rounded-lg flex justify-between items-center">
-      {props.showBtn ? (
+      {showBtn ? (
         <div className="flex items-center">
-          <img
-            src={props.foto}
-            alt={props.nome}
-            className="w-16 h-16 object-cover mr-4"
-          />
+          <img src={foto} alt={nome} className="w-16 h-16 object-cover mr-4" />
           <div>
-            <h3 className="text-lg font-semibold">{props.nome}</h3>
+            <h3 className="text-lg font-semibold">{nome}</h3>
             <p className="text-gray-500">
               {new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
-              }).format(props.preco)}
+              }).format(preco)}
             </p>
             <div className="flex items-center mt-2">
               <button
@@ -46,7 +41,7 @@ function ProductCart(props) {
               >
                 -
               </button>
-              <p>{props.qtd}</p>
+              <p>{qtd}</p>
               <button
                 className="bg-gray-300 text-gray-700 px-3 py-1 rounded-md ml-2"
                 onClick={AddItem}
@@ -58,14 +53,10 @@ function ProductCart(props) {
         </div>
       ) : (
         <div className="flex items-center">
-          <p className="mr-4">{props.qtd}</p>
-          <img
-            src={props.foto}
-            alt={props.nome}
-            className="w-16 h-16 object-cover mr-4"
-          />
+          <p className="mr-4">{qtd}</p>
+          <img src={foto} alt={nome} className="w-16 h-16 object-cover mr-4" />
           <div>
-            <h3 className="text-lg font-semibold">{props.nome}</h3>
+            <h3 className="text-lg font-semibold">{nome}</h3>
             <p className="text-gray-500">
               {new Intl.NumberFormat('pt-BR', {
                 style: 'currency',

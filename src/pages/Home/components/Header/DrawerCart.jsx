@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import ProductCart from '../ProductCart/ProductCard';
+import ProductCart from './ProductCard';
 import { ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../../../../../contexts/contextCart';
+import { CartContext } from '../../../../contexts/contextCart';
 
 export default function DrawerCart() {
   const { cartItems, totalCart } = useContext(CartContext);

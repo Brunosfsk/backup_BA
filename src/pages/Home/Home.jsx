@@ -7,7 +7,7 @@ const Home = () => {
     <div className="h-dvh flex flex-col justify-between ">
       <div>
         <Header titleHeader="Seja Bem-Vindo" />
-        <Body/>
+        <Body />
       </div>
       <Footer />
     </div>

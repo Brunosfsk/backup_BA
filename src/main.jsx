@@ -1,21 +1,24 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import CartProvider from '../src/contexts/contextCart'
-// import Home from './Home/Home'
-import Rotas from './rotas'
-import { useContext } from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { AuthProvider } from './contexts/auth';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import CartProvider from './contexts/contextCart';
 
-// const CartContext = createContext();
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <AuthProvider>
     <React.StrictMode>
-        {/* <div>
-        
-        </div> */}
-            <CartProvider>
-                <Rotas />
-            </CartProvider>
-        
-    </React.StrictMode>,
-)
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </React.StrictMode>
+  </AuthProvider>,
+);

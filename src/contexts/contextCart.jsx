@@ -76,5 +76,3 @@ function CartProvider(props) {
 }
 
 export default CartProvider;
-
-// Criar o armazenamento de dados no localstorage do pedido

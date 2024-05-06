@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        login: "url(./src/assets/bg-login.jpg)",
+        signUp: "url(./src/assets/bg-singup.jpg)"
+      }
+    },
   },
   plugins: [require("daisyui")],
 }

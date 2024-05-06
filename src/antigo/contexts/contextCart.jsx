@@ -6,13 +6,6 @@ function CartProvider(props) {
 
     const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('@Service:cart')) || []);
     const [totalCart, setTotalCart] = useState(localStorage.getItem('@Service:cartTotal') || 0);
-    // const [dadosEntrega, setDadosEntrega] = useState([]);
-
-    // function AddDadosEntrega(item){
-    //     let dadosNovo = [];
-    //         dadosNovo.push(item);
-    //         console.log(dadosNovo)
-    // }
 
     function AddItemCart(item) {
 

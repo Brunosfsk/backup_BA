@@ -1,21 +1,20 @@
-import { createContext, useState } from "react"; 
+import { createContext, useState } from 'react';
 
-const DadosEntregaContext = createContext();
+export const DadosEntregaContext = createContext();
 
+function ContextDadosEntrega(props) {
+  const [dadosEntrega, setDadosEntrega] = useState([]);
 
+  function addDados(item) {
+    setDadosEntrega(item);
+  }
+  console.log(addDados);
 
-function ContextDadosEntrega (props){
-    const [ dadosEntrega, setDadosEntrega ] = useState([])
-
-    function addDados(item){
-        setDadosEntrega(item);
-    }
-    console.log(addDados)
-
-    return <DadosEntregaContext.Provider value={{addDados}}>
-    {props.children}
+  return (
+    <DadosEntregaContext.Provider value={{ addDados }}>
+      {props.children}
     </DadosEntregaContext.Provider>
+  );
 }
 
-export {ContextDadosEntrega}
-
+export default ContextDadosEntrega;

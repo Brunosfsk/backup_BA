@@ -1,22 +1,20 @@
-import { createContext, useState } from "react";
+import { createContext, useState } from 'react';
 
-const PedidoContext = createContext();
-
+export const PedidoContext = createContext();
 
 function ContextPedidos(props) {
-    const [pedido, setPedido] = useState([])
+  const [pedido, setPedido] = useState([]);
 
-    function addPedido(item) {
-        setPedido(item);
-        // console.log(pedido)
-    }
+  function addPedido(item) {
+    setPedido(item);
+    // console.log(pedido)
+  }
 
-    return (
-        <PedidoContext.Provider value={{ addPedido }}>
-            {props.children}
-        </PedidoContext.Provider>
-    )
+  return (
+    <PedidoContext.Provider value={{ addPedido }}>
+      {props.children}
+    </PedidoContext.Provider>
+  );
 }
 
-export { ContextPedidos }
-
+export default ContextPedidos;

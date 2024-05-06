@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Home from './Home/Home';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home/Home';
 import Login from './pages/login/Login';
 import { AuthProvider } from './contexts/auth';
 import SignUp from './pages/signUp/SignUp';
@@ -30,7 +31,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </React.StrictMode>
   </AuthProvider>,
 );

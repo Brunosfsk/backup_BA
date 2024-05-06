@@ -1,6 +1,11 @@
+import { useContext } from 'react';
 import Footer from '../../components/Footer';
+import { CartContext } from '../../contexts/contextCart';
+import ProductCart from '../Home/components/Header/ProductCard';
 
 function Checkout() {
+  const { cartItems } = useContext(CartContext);
+
   return (
     <section className="h-dvh flex flex-col justify-between">
       <div className="w-full justify-center px-10 py-8">
@@ -46,6 +51,18 @@ function Checkout() {
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">
             <h3 className="text-xl">Resumo do Pedido</h3>
+            {cartItems.map((item) => {
+              return (
+                <ProductCart
+                  key={item.id}
+                  id={item.id}
+                  foto={item.foto}
+                  nome={item.nome}
+                  qtd={item.qtd}
+                  preco={item.preco}
+                />
+              );
+            })}
           </div>
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">

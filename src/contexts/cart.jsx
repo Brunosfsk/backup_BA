@@ -1,78 +1,47 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
-function CartProvider(props) {
-  const [cartItems, setCartItems] = useState(
-    JSON.parse(localStorage.getItem('@Service:cart')) || [],
-  );
-  const [totalCart, setTotalCart] = useState(
-    localStorage.getItem('@Service:cartTotal') || 0,
-  );
+const CartProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+  const [totalCart, setTotalCart] = useState(0);
 
-  function AddItemCart(item) {
-    let cartItemsNovo = [];
-    let findItem = false;
-
-    for (var prod of cartItems) {
-      if (prod.id == item.id) {
-        item.qtd = prod.qtd + 1;
-        findItem = true;
-        cartItemsNovo.push(item);
-      } else {
-        cartItemsNovo.push(prod);
+  const addItemCart = (item) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((i) => i.id === item.id);
+      if (existingItem) {
+        return prevItems.map((i) =>
+          i.id === item.id ? { ...i, qtd: i.qtd + 1 } : i,
+        );
       }
-    }
-
-    if (findItem == false || cartItems.length == 0) {
-      cartItemsNovo.push(item);
-    }
-
-    localStorage.setItem('@Service:cart', JSON.stringify(cartItemsNovo));
-    setCartItems(cartItemsNovo);
-    CalcTotal(cartItemsNovo);
-  }
-
-  function RemoveItemCart(id) {
-    let cartItemsNovo = [];
-
-    for (var prod of cartItems) {
-      if (prod.id == id) {
-        prod.qtd = prod.qtd - 1;
-      }
-      cartItemsNovo.push(prod);
-    }
-
-    cartItemsNovo = cartItemsNovo.filter((item) => {
-      return item.qtd > 0;
+      return [...prevItems, item];
     });
+    setTotalCart((prevTotal) => prevTotal + item.preco);
+  };
 
-    localStorage.setItem('@Service:cart', JSON.stringify(cartItemsNovo));
-    setCartItems(cartItemsNovo);
-    CalcTotal(cartItemsNovo);
-  }
-
-  function CalcTotal(items) {
-    let tot = 0;
-    for (var item of items) tot = tot + item.preco * item.qtd;
-
-    localStorage.setItem('@Service:cartTotal', tot);
-    setTotalCart(tot);
-  }
+  const removeItemCart = (itemId) => {
+    setCartItems((prevItems) => {
+      const item = prevItems.find((i) => i.id === itemId);
+      if (item.qtd > 1) {
+        return prevItems.map((i) =>
+          i.id === itemId ? { ...i, qtd: i.qtd - 1 } : i,
+        );
+      }
+      return prevItems.filter((i) => i.id !== itemId);
+    });
+    setTotalCart((prevTotal) => {
+      const item = cartItems.find((i) => i.id === itemId);
+      return prevTotal - item.preco;
+    });
+  };
 
   return (
     <CartContext.Provider
-      value={{
-        cartItems,
-        setCartItems,
-        AddItemCart,
-        totalCart,
-        RemoveItemCart,
-      }}
+      value={{ cartItems, totalCart, addItemCart, removeItemCart }}
     >
-      {props.children}
+      {children}
     </CartContext.Provider>
   );
-}
+};
 
 export default CartProvider;

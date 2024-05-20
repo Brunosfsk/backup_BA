@@ -8,14 +8,14 @@ const Body = () => {
         Faça sua escolha e adicione no seu carrinho de compras
       </h2>
       <div className="flex flex-wrap justify-center gap-4">
-        {produtos.map((prod) => (
+        {produtos.map(({ id, nome, descricao, preco, foto }) => (
           <CardProduto
-            key={prod.id}
-            id={prod.id}
-            nome={prod.nome}
-            descricao={prod.descricao}
-            preco={prod.preco}
-            foto={prod.foto}
+            key={id}
+            id={id}
+            nome={nome}
+            descricao={descricao}
+            preco={preco}
+            foto={foto}
           />
         ))}
       </div>

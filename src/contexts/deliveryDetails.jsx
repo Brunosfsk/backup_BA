@@ -1,20 +1,26 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const DeliveryDetailsContext = createContext();
 
-function deliveryDetailsProvider(props) {
-  const [dadosEntrega, setDadosEntrega] = useState([]);
+const DeliveryDetailsProvider = ({ children }) => {
+  const [deliveryDetails, setDeliveryDetails] = useState({
+    cep: '',
+    rua: '',
+    bairro: '',
+    cidade: '',
+  });
 
-  function addDados(item) {
-    setDadosEntrega(item);
-  }
-  console.log(addDados);
+  const updateDeliveryDetails = (details) => {
+    setDeliveryDetails(details);
+  };
 
   return (
-    <DadosEntregaContext.Provider value={{ addDados }}>
-      {props.children}
-    </DadosEntregaContext.Provider>
+    <DeliveryDetailsContext.Provider
+      value={{ deliveryDetails, updateDeliveryDetails }}
+    >
+      {children}
+    </DeliveryDetailsContext.Provider>
   );
-}
+};
 
-export default deliveryDetailsProvider;
+export default DeliveryDetailsProvider;

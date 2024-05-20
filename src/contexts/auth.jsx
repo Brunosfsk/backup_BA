@@ -1,8 +1,6 @@
-
-import { createContext, useState } from "react";
-import { Navigate } from 'react-router-dom'
-import { api } from "../services/api.js";
-
+import { createContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { api } from '../services/api.js';
 
 export const AuthContext = createContext();
 
@@ -13,27 +11,27 @@ export const AuthProvider = ({ children }) => {
   const [loadingLogin, setLoadingLogin] = useState(false);
 
   const signIn = async ({ email, password }) => {
-    await api.post("/auth", { email, password })
+    await api
+      .post('/auth', { email, password })
       .then((res) => {
         setLoadingLogin(false);
-        setError('')
-        setId(res.data.id)
-        setEmail(res.data.email)
-        localStorage.setItem('@Auth:id', res.data.id)
-        localStorage.setItem('@Auth:email', res.data.email)
+        setError('');
+        setId(res.data.id);
+        setEmail(res.data.email);
+        localStorage.setItem('@Auth:id', res.data.id);
+        localStorage.setItem('@Auth:email', res.data.email);
       })
       .catch((err) => {
-        setError(JSON.parse(err.request.response).error)
+        setError(JSON.parse(err.request.response).error);
         setLoadingLogin(false);
-      })
-  }
+      });
+  };
 
   const signOut = () => {
     localStorage.clear();
     setId(null);
-    return <Navigate to="/login" />
-  }
-
+    return <Navigate to="/login" />;
+  };
 
   return (
     <AuthContext.Provider
@@ -45,8 +43,9 @@ export const AuthProvider = ({ children }) => {
         signOut,
         error,
         loadingLogin,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};

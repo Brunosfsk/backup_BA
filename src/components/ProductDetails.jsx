@@ -22,7 +22,7 @@ function ProductDetails({ id, nome, preco, foto, qtd, showBtn }) {
   const totalItem = preco * qtd;
 
   return (
-    <div className=" p-4 border rounded-lg flex justify-between items-center">
+    <div className=" p-4 border border-white/40 rounded-lg flex justify-between items-center">
       <div className="w-full flex items-center gap-4">
         <img
           src={foto}

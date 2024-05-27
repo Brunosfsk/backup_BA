@@ -6,8 +6,11 @@ import Login from './pages/login/Login';
 import { AuthProvider } from './contexts/auth';
 import SignUp from './pages/signUp/SignUp';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Checkout from './pages/Checkout/Checkout';
+import Checkout from './pages/checkout/Checkout';
 import CartProvider from './contexts/cart';
+import CadastroProspcts from './pages/cadastroProspcts/CadastroProspcts';
+import Dashboard from './pages/Dashboar/Dashboar';
+import Representantes from './pages/Representantes/Representantes';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
   {
     path: '/checkout',
     element: <Checkout />,
+  },
+  {
+    path: '/cadastro-prospcts',
+    element: <CadastroProspcts/>,
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>,
+  },
+  {
+    path: '/representantes',
+    element: <Representantes/>,
   },
 ]);
 

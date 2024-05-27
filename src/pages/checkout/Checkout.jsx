@@ -5,7 +5,8 @@ import ProductDetails from '../../components/ProductDetails';
 
 function Checkout() {
   const { totalCart, cartItems } = useContext(CartContext);
-
+  const totalCompra = totalCart + 10;
+  console.log(totalCompra, totalCart)
   return (
     <section className="h-dvh flex flex-col justify-between">
       <div className="w-full justify-center px-10 py-8">
@@ -63,6 +64,8 @@ function Checkout() {
                 />
               );
             })}
+          <h2 >Total pedido {totalCart}</h2>
+          <h2 className=''>Frete 10,00</h2>
           </div>
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">
@@ -70,7 +73,7 @@ function Checkout() {
               <div className="bg-base-100 flex flex-col gap-4">
                 <h2 className="text-2xl font-medium">Total</h2>
                 <p className="text-xl">
-                  {totalCart.toLocaleString('pt-br', {
+                  {totalCompra.toLocaleString('pt-br', {
                     style: 'currency',
                     currency: 'BRL',
                   })}
@@ -121,7 +124,7 @@ function Checkout() {
                   </div>
                 </div>
                 <button
-                  className="btn btn-active btn-primary"
+                  className="btn btn-active bg-secondary text-w"
                   onClick={() =>
                     document.getElementById('modal_confirm_pedido').showModal()
                   }
@@ -134,18 +137,28 @@ function Checkout() {
         </div>
 
         <dialog id="modal_confirm_pedido" className="modal">
-          <div className="modal-box w-11/12 max-w-5xl">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <p className="py-4">Click the button below to close</p>
+          <div className="modal-box w-11/12 max-w-5xl flex flex-col gap-4">
+            <h3 className="font-bold text-lg">Confirmar pedido</h3>
+            {cartItems.map((item) => {
+              return (
+                <ProductDetails
+                  key={item.id}
+                  id={item.id}
+                  foto={item.foto}
+                  nome={item.nome}
+                  qtd={item.qtd}
+                  preco={item.preco}
+                />
+              );
+            })}
             <div className="modal-action">
               <form method="dialog">
-                <button className="btn">Close</button>
+                <button className="btn bg-secondary text-w">Confirmar</button>
               </form>
             </div>
           </div>
         </dialog>
       </div>
-      <Footer />
     </section>
   );
 }

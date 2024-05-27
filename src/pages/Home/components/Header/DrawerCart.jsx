@@ -4,14 +4,19 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../../../contexts/cart';
 import ProductDetails from '../../../../components/ProductDetails';
 
-export default function DrawerCart() {
+export default function DrawerCart({qtd}) {
   const { cartItems, totalCart } = useContext(CartContext);
 
+  const qtdPedidos = cartItems.length
+
+console.log(cartItems)
+console.log(totalCart)
   return (
     <div className="w-fit drawer drawer-end">
       <input id="drawer-cart" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content">
+      <div className="drawer-content indicator">
         <label htmlFor="drawer-cart" className="drawer-button cursor-pointer">
+          <span className="h-4 w-4 indicator-item badge bg-primary border-0 text-w z-0">{qtdPedidos}</span>
           <ShoppingCart />
         </label>
       </div>
@@ -49,7 +54,7 @@ export default function DrawerCart() {
                 })}
               </span>
             </h3>
-            <Link to="/checkout" className="btn btn-primary">
+            <Link to="/checkout" className="btn bg-secondary text-w">
               Finalizar compra
             </Link>
           </div>

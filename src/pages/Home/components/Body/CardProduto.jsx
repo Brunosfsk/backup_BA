@@ -22,14 +22,14 @@ const CardProduto = ({ id, nome, preco, foto, descricao }) => {
       <div className="card-body p-2">
         <h2 className="card-title ">
           {nome}
-          <div className="badge badge-secondary text-xs">NEW</div>
+          <div className="badge bg-primary text-white text-xs">NEW</div>
         </h2>
         <p>{descricao}</p>
         {/* <div className="card-actions justify-end">
           <div className="badge badge-outline">Fashion</div>
           <div className="badge badge-outline">Products</div>
         </div> */}
-        <button onClick={AddItem} className="w-full  btn btn-primary">
+        <button onClick={AddItem} className="w-full  btn bg-secondary text-white">
           Adicionar ao carrinho
         </button>
       </div>

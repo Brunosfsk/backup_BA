@@ -29,6 +29,7 @@ function ProductDetails({ id, nome, preco, foto, qtd, showBtn }) {
           alt={nome}
           className="w-16 h-16 object-cover  rounded overflow-hidden"
         />
+        <p>{qtd}</p>
         <div className="flex-1">
           <h3 className="text-lg font-semibold">{nome}</h3>
           <p className="text-gray-500">
@@ -36,6 +37,12 @@ function ProductDetails({ id, nome, preco, foto, qtd, showBtn }) {
               style: 'currency',
               currency: 'BRL',
             }).format(preco)}
+          </p>
+          <p className="text-brack-800 text-lg mt-4 font-bold">
+            {new Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(preco*qtd)}
           </p>
           {showBtn && (
             <div className="w-full flex justify-end">

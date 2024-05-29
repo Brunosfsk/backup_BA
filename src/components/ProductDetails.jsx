@@ -2,21 +2,21 @@ import { useContext } from 'react';
 import { CartContext } from '../contexts/cart';
 
 function ProductDetails({ id, nome, preco, foto, qtd, showBtn }) {
-  const { AddItemCart, RemoveItemCart } = useContext(CartContext);
+  const { addItemCart, removeItemCart } = useContext(CartContext);
 
-  function AddItem() {
+  async function AddItem() {
     const item = {
-      id: id,
-      nome: nome,
-      preco: preco,
-      foto: foto,
+      id,
+      nome,
+      preco,
+      foto,
       qtd: 1,
     };
-    AddItemCart(item);
+    await addItemCart(item);
   }
 
-  function RemoveItem() {
-    RemoveItemCart(id);
+  async function RemoveItem() {
+    await removeItemCart(id);
   }
 
   const totalItem = preco * qtd;
@@ -42,7 +42,7 @@ function ProductDetails({ id, nome, preco, foto, qtd, showBtn }) {
             {new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL',
-            }).format(preco*qtd)}
+            }).format(preco * qtd)}
           </p>
           {showBtn && (
             <div className="w-full flex justify-end">

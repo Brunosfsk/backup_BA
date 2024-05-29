@@ -6,10 +6,10 @@ import Login from './pages/login/Login';
 import { AuthProvider } from './contexts/auth';
 import SignUp from './pages/signUp/SignUp';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Checkout from './pages/checkout/Checkout';
+import Checkout from './pages/Checkout/Checkout';
 import CartProvider from './contexts/cart';
 import CadastroProspcts from './pages/cadastroProspcts/CadastroProspcts';
-import Dashboard from './pages/Dashboar/Dashboar';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Representantes from './pages/Representantes/Representantes';
 
 const router = createBrowserRouter([

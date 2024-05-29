@@ -24,15 +24,7 @@ const CardProduto = ({ id, nome, preco, foto, descricao }) => {
           <div className="badge bg-primary text-white text-xs">NEW</div>
         </h2>
         <p>{descricao}</p>
-<<<<<<< HEAD
         <button onClick={addItem} className="w-full btn btn-primary">
-=======
-        {/* <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div>
-          <div className="badge badge-outline">Products</div>
-        </div> */}
-        <button onClick={AddItem} className="w-full  btn bg-secondary text-white">
->>>>>>> origin/ajustesFront
           Adicionar ao carrinho
         </button>
       </div>

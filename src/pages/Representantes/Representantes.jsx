@@ -1,6 +1,6 @@
 import { Users, LayoutDashboard, Store, LineChart } from "lucide-react";
-import NavBar from "../Dashboar/Navbar/Navbar";
-import Sidebar, { SidebarItem } from "../Dashboar/SideBar/Sidebar";
+import NavBar from "../Dashboard/Navbar/Navbar";
+import Sidebar, { SidebarItem } from "../Dashboard/SideBar/Sidebar";
 
 const Representantes = () => {
     return (

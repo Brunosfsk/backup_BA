@@ -1,12 +1,10 @@
 import { useContext } from 'react';
-import Footer from '../../components/Footer';
 import { CartContext } from '../../contexts/cart';
 import ProductDetails from '../../components/ProductDetails';
 
 function Checkout() {
   const { totalCart, cartItems } = useContext(CartContext);
   const totalCompra = totalCart + 10;
-  console.log(totalCompra, totalCart)
   return (
     <section className="h-dvh flex flex-col justify-between">
       <div className="w-full justify-center px-10 py-8">
@@ -64,8 +62,8 @@ function Checkout() {
                 />
               );
             })}
-          <h2 >Total pedido {totalCart}</h2>
-          <h2 className=''>Frete 10,00</h2>
+            <h2>Total pedido {totalCart}</h2>
+            <h2 className="">Frete 10,00</h2>
           </div>
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">

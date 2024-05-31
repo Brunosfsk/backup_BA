@@ -24,6 +24,7 @@ function Login() {
   const navigate = useNavigate();
 
   const { signIn, signed, error } = useContext(AuthContext);
+  console.log(error && error);
 
   const loginUser = async (e) => {
     e.preventDefault();
@@ -39,8 +40,15 @@ function Login() {
     <div className="min-h-screen bg-base-200 w-vw">
       <div className="flex flex-col lg:flex-row-reverse w-full h-dvh">
         <div className="card shrink-0 shadow-2xl bg-base-100 flex-1 justify-center items-center">
-          <form onSubmit={loginUser} className="card-body w-full max-w-sm justify-center items-center">
-            <img src="/logoBA.png" alt="Bairro Ativo" className="w-32 self-start opacity-80" />
+          <form
+            onSubmit={loginUser}
+            className="card-body w-full max-w-sm justify-center items-center"
+          >
+            <img
+              src="/logoBA.png"
+              alt="Bairro Ativo"
+              className="w-32 self-start opacity-80"
+            />
             <InputField
               label="Email"
               type="email"
@@ -55,7 +63,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {error && <small>{error}</small>}
+            {error && <small>{error.error}</small>}
             <div className="form-control w-full mt-6">
               <button className="btn btn-primary">Acessar</button>
             </div>

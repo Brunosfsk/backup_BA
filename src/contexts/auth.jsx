@@ -20,9 +20,10 @@ export const AuthProvider = ({ children }) => {
         setEmail(res.data.email);
         localStorage.setItem('@Auth:id', res.data.id);
         localStorage.setItem('@Auth:email', res.data.email);
+        setError(res.data);
       })
       .catch((err) => {
-        setError(JSON.parse(err.request.response).error);
+        setError(JSON.parse(err.request.response));
         setLoadingLogin(false);
       });
   };

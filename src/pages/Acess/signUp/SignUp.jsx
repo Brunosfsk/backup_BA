@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../../contexts/auth';
 
 const InputField = ({ label, type, placeholder, value, onChange }) => (
   <div className="form-control w-full">
@@ -21,6 +22,9 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { signed } = useContext(AuthContext);
+
+  if (signed) return <Navigate to="/" />;
 
   return (
     <div className="min-h-screen bg-base-200 w-vw">

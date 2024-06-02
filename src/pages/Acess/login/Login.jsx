@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/auth.jsx';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/auth.jsx';
 
 const InputField = ({ label, type, placeholder, value, onChange }) => (
   <div className="form-control w-full">
@@ -21,20 +21,14 @@ const InputField = ({ label, type, placeholder, value, onChange }) => (
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
   const { signIn, signed, error } = useContext(AuthContext);
-  console.log(error && error);
 
   const loginUser = async (e) => {
     e.preventDefault();
     await signIn({ email, password });
   };
 
-  if (signed) {
-    navigate('/');
-    return null;
-  }
+  if (signed) return <Navigate to="/" />;
 
   return (
     <div className="min-h-screen bg-base-200 w-vw">

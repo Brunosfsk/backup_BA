@@ -33,7 +33,7 @@ function Login() {
 
   if (signed) {
     navigate('/');
-    return null; // Return null to prevent rendering the rest of the component
+    return null;
   }
 
   return (

@@ -5,32 +5,41 @@ import { api } from '../services/api.js';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [id, setId] = useState('');
-  const [email, setEmail] = useState(localStorage.getItem('@Auth:user'));
+  const [id, setId] = useState(localStorage.getItem('@Auth:id'));
+  const [email, setEmail] = useState(localStorage.getItem('@Auth:email'));
   const [error, setError] = useState(null);
   const [loadingLogin, setLoadingLogin] = useState(false);
 
+  const saveAuthData = ({ id, email , token}) => {
+    setId(id);
+    setEmail(email);
+    localStorage.setItem('@Auth:id', id);
+    localStorage.setItem('@Auth:email', email);
+    localStorage.setItem('@Auth:token', token);
+  };
+
+  const handleAuthError = (err) => {
+    setError(JSON.parse(err.request.response));
+    setLoadingLogin(false);
+  };
+
   const signIn = async ({ email, password }) => {
-    await api
-      .post('/auth', { email, password })
-      .then((res) => {
-        setLoadingLogin(false);
-        setError('');
-        setId(res.data.id);
-        setEmail(res.data.email);
-        localStorage.setItem('@Auth:id', res.data.id);
-        localStorage.setItem('@Auth:email', res.data.email);
-        setError(res.data);
-      })
-      .catch((err) => {
-        setError(JSON.parse(err.request.response));
-        setLoadingLogin(false);
-      });
+    setLoadingLogin(true);
+    try {
+      const res = await api.post('/auth', { email, password });
+      saveAuthData(res.data);
+      setError(null);
+    } catch (err) {
+      handleAuthError(err);
+    } finally {
+      setLoadingLogin(false);
+    }
   };
 
   const signOut = () => {
     localStorage.clear();
     setId(null);
+    setEmail(null);
     return <Navigate to="/login" />;
   };
 

@@ -14,44 +14,77 @@ import SignUp from './pages/Acess/signUp/SignUp.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PrivateRouteAdm from './routes/private/PrivateRouteAdm.jsx';
 import NotFound from './pages/NotFound.jsx';
+import BusinessProvider from './contexts/business.jsx';
 
 const router = createBrowserRouter([
   {
-    path: '/:idBusiness',
-    element: <Home />,
+    path: '/:nameBussiness',
+    element: (
+      <BusinessProvider>
+        <Home />
+      </BusinessProvider>
+    ),
   },
   {
-    path: '/:idBusiness/login',
-    element: <Login />,
+    path: '/:nameBussiness/login',
+    element: (
+      <BusinessProvider>
+        <Login />
+      </BusinessProvider>
+    ),
   },
   {
-    path: '/:idBusiness/cadastrar',
-    element: <SignUp />,
+    path: '/:nameBussiness/cadastrar',
+    element: (
+      <BusinessProvider>
+        <SignUp />
+      </BusinessProvider>
+    ),
   },
   // {
   //   path: '/checkout',
-  //   element: <Checkout />,
+  //   element:<Checkout />,
   // },
   {
-    element: <PrivateRouteAdm />,
+    element: (
+      <BusinessProvider>
+        <PrivateRouteAdm />
+      </BusinessProvider>
+    ),
     children: [
       {
-        path: '/:idBusiness/cadastro-prospcts',
-        element: <CadastroProspcts />,
+        path: '/:nameBussiness/cadastro-prospcts',
+        element: (
+          <BusinessProvider>
+            <CadastroProspcts />
+          </BusinessProvider>
+        ),
       },
       {
-        path: '/:idBusiness/dashboard',
-        element: <Dashboard />,
+        path: '/:nameBussiness/dashboard',
+        element: (
+          <BusinessProvider>
+            <Dashboard />
+          </BusinessProvider>
+        ),
       },
       {
-        path: '/:idBusiness/representantes',
-        element: <Representantes />,
+        path: '/:nameBussiness/representantes',
+        element: (
+          <BusinessProvider>
+            <Representantes />
+          </BusinessProvider>
+        ),
       },
     ],
   },
   {
     path: '*',
-    element: <NotFound />,
+    element: (
+      <BusinessProvider>
+        <NotFound />
+      </BusinessProvider>
+    ),
   },
 ]);
 

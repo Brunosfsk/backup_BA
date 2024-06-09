@@ -22,12 +22,6 @@ class localStorageManager {
   }
 
 
-  static businessName() {
-    const name = "ativo"
-    return name
-  }
-
-
   static async signOut() {
     const dadosInternos = ['@Auth:']
 

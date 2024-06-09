@@ -1,10 +1,12 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
+
+  console.log(cartItems);
 
   const addItemCart = (item) => {
     setCartItems((prevItems) => {
@@ -16,7 +18,7 @@ const CartProvider = ({ children }) => {
       }
       return [...prevItems, item];
     });
-    setTotalCart((prevTotal) => prevTotal + item.preco);
+    setTotalCart((prevTotal) => Number(prevTotal) + Number(item.price));
   };
 
   const removeItemCart = (itemId) => {
@@ -31,7 +33,7 @@ const CartProvider = ({ children }) => {
     });
     setTotalCart((prevTotal) => {
       const item = cartItems.find((i) => i.id === itemId);
-      return prevTotal - item.preco;
+      return Number(prevTotal) - Number(item.price);
     });
   };
 

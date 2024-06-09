@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { CartContext } from '../../../../contexts/cart';
 
-const CardProduto = ({ id, nome, preco, foto, descricao }) => {
+const CardProduto = ({ id, name, description, price, photo_thumb }) => {
   const { addItemCart } = useContext(CartContext);
 
   const addItem = () => {
     const item = {
       id,
-      nome,
-      preco,
-      foto,
+      name,
+      price,
+      photo_thumb,
       qtd: 1,
     };
     addItemCart(item);
@@ -17,13 +17,13 @@ const CardProduto = ({ id, nome, preco, foto, descricao }) => {
 
   return (
     <div className="flex items-center card w-56 bg-base-100 shadow-xl overflow-hidden">
-      <img src={foto} className="w-full" alt={nome} />
+      <img src={photo_thumb} className="w-full" alt={name} />
       <div className="card-body p-2">
         <h2 className="card-title">
-          {nome}
+          {name}
           <div className="badge bg-primary text-white text-xs">NEW</div>
         </h2>
-        <p>{descricao}</p>
+        <p>{description}</p>
         <button onClick={addItem} className="w-full btn btn-primary">
           Adicionar ao carrinho
         </button>

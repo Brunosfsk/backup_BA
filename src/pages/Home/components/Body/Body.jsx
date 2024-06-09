@@ -24,13 +24,14 @@ const Body = () => {
       <div className="flex flex-wrap justify-center gap-4">
         {orders &&
           !orders.error &&
-          orders.map(({ name, description, price, photo_thumb }, i) => (
+          orders.map(({ id, name, description, price, photo_thumb }, i) => (
             <CardProduto
               key={i}
-              nome={name}
-              descricao={description}
-              preco={price}
-              foto={photo_thumb}
+              id={id}
+              name={name}
+              description={description}
+              price={price}
+              photo_thumb={photo_thumb}
             />
           ))}
       </div>

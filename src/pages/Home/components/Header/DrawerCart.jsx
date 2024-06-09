@@ -31,10 +31,6 @@ const CartBadge = ({ itemCount }) => (
 export default function DrawerCart() {
   const { cartItems, totalCart } = useContext(CartContext);
 
-  const qtdPedidos = cartItems.length;
-
-  console.log(cartItems);
-  console.log(totalCart);
   return (
     <div className="w-fit z-50 drawer drawer-end">
       <input id="drawer-cart" type="checkbox" className="drawer-toggle" />
@@ -52,15 +48,15 @@ export default function DrawerCart() {
         ></label>
         <div className="menu h-full bg-base-200 text-base-content justify-between p-4 pr-8 w-96 ">
           <ul className="flex flex-col gap-2 h-4/5 overflow-auto">
-            {cartItems.map((item) => (
+            {cartItems.map((item, i) => (
               <ProductDetails
                 showBtn
-                key={item.id}
+                key={i}
                 id={item.id}
-                foto={item.foto}
-                nome={item.nome}
+                photo_thumb={item.photo_thumb}
+                name={item.name}
                 qtd={item.qtd}
-                preco={item.preco}
+                price={item.price}
               />
             ))}
           </ul>

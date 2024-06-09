@@ -12,18 +12,20 @@ import Representantes from './pages/Representantes/Representantes';
 import Login from './pages/Acess/login/Login.jsx';
 import SignUp from './pages/Acess/signUp/SignUp.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import PrivateRouteAdm from './routes/private/PrivateRouteAdm.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/:idBusiness',
     element: <Home />,
   },
   {
-    path: '/login',
+    path: '/:idBusiness/login',
     element: <Login />,
   },
   {
-    path: '/cadastrar',
+    path: '/:idBusiness/cadastrar',
     element: <SignUp />,
   },
   // {
@@ -31,16 +33,25 @@ const router = createBrowserRouter([
   //   element: <Checkout />,
   // },
   {
-    path: '/cadastro-prospcts',
-    element: <CadastroProspcts />,
+    element: <PrivateRouteAdm />,
+    children: [
+      {
+        path: '/:idBusiness/cadastro-prospcts',
+        element: <CadastroProspcts />,
+      },
+      {
+        path: '/:idBusiness/dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: '/:idBusiness/representantes',
+        element: <Representantes />,
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    element: <Dashboard />,
-  },
-  {
-    path: '/representantes',
-    element: <Representantes />,
+    path: '*',
+    element: <NotFound />,
   },
 ]);
 

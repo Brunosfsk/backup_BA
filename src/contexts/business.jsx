@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import { createContext } from 'react';
 import localStorageManager from '../services/localStorageManager';
 import { useParams } from 'react-router-dom';
 

@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/auth.jsx';
 
 const InputField = ({ label, type, placeholder, value, onChange }) => (

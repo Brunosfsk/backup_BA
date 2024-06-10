@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import ProductCart from './ProductCard';
 import ButtonCart from '../../Buttons/ButtonCart';
+import { CartContext } from '../../../../contexts/cart';
 
 function ModalCart({ isOpen, setOpenModal }) {
   const { cartItems, totalCart } = useContext(CartContext);

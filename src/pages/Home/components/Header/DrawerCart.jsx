@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ShoppingCart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { CartContext } from '../../../../contexts/cart';
 import ProductDetails from '../../../../components/ProductDetails';
 
@@ -31,6 +31,7 @@ const CartBadge = ({ itemCount }) => (
 export default function DrawerCart() {
   const { cartItems, totalCart } = useContext(CartContext);
 
+  const { nameBussiness } = useParams();
   return (
     <div className="w-fit z-50 drawer drawer-end">
       <input id="drawer-cart" type="checkbox" className="drawer-toggle" />
@@ -63,7 +64,7 @@ export default function DrawerCart() {
 
           <div className="flex flex-col justify-end gap-3 h-1/5">
             <OrderTotal totalCart={totalCart} />
-            <Link to="/checkout" className="btn btn-primary">
+            <Link to={`/${nameBussiness}/checkout`} className="btn btn-primary">
               Finalizar compra
             </Link>
           </div>

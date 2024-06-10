@@ -50,15 +50,15 @@ function Checkout() {
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">
             <h3 className="text-xl">Resumo do Pedido</h3>
-            {cartItems.map((item) => {
+            {cartItems.map((item, i) => {
               return (
                 <ProductDetails
-                  key={item.id}
+                  key={i}
                   id={item.id}
-                  foto={item.foto}
-                  nome={item.nome}
+                  photo_thumb={item.photo_thumb}
+                  name={item.name}
                   qtd={item.qtd}
-                  preco={item.preco}
+                  price={item.price}
                 />
               );
             })}
@@ -137,15 +137,15 @@ function Checkout() {
         <dialog id="modal_confirm_pedido" className="modal">
           <div className="modal-box w-11/12 max-w-5xl flex flex-col gap-4">
             <h3 className="font-bold text-lg">Confirmar pedido</h3>
-            {cartItems.map((item) => {
+            {cartItems.map((item, i) => {
               return (
                 <ProductDetails
-                  key={item.id}
+                  key={i}
                   id={item.id}
-                  foto={item.foto}
-                  nome={item.nome}
+                  photo_thumb={item.photo_thumb}
+                  name={item.name}
                   qtd={item.qtd}
-                  preco={item.preco}
+                  price={item.price}
                 />
               );
             })}

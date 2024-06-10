@@ -4,7 +4,7 @@ import './index.css';
 import Home from './pages/Home/Home';
 import { AuthProvider } from './contexts/auth';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Checkout from './pages/Checkout/Checkout';
+// import Checkout from './pages/Checkout/Checkout';
 import CartProvider from './contexts/cart';
 import CadastroProspcts from './pages/cadastroProspcts/CadastroProspcts';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -41,10 +41,10 @@ const router = createBrowserRouter([
       </BusinessProvider>
     ),
   },
-  {
-    path: '/:nameBussiness/checkout',
-    element: <Checkout />,
-  },
+  // {
+  //   path: '/:nameBussiness/checkout',
+  //   element: <Checkout />,
+  // },
   {
     element: (
       <BusinessProvider>

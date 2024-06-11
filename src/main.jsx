@@ -18,7 +18,7 @@ import BusinessProvider from './contexts/business.jsx';
 
 const router = createBrowserRouter([
   {
-    path: '/:nameBussiness',
+    path: '',
     element: (
       <BusinessProvider>
         <Home />
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/:nameBussiness/login',
+    path: '/login',
     element: (
       <BusinessProvider>
         <Login />
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/:nameBussiness/cadastrar',
+    path: '/cadastrar',
     element: (
       <BusinessProvider>
         <SignUp />
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     ),
   },
   // {
-  //   path: '/:nameBussiness/checkout',
+  //   path: '/checkout',
   //   element: <Checkout />,
   // },
   {
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/:nameBussiness/cadastro-prospcts',
+        path: '/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/dashboard',
+        path: '/dashboard',
         element: (
           <BusinessProvider>
             <Dashboard />
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/representantes',
+        path: '/representantes',
         element: (
           <BusinessProvider>
             <Representantes />

@@ -14,7 +14,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PrivateRouteAdm from './routes/private/PrivateRouteAdm.jsx';
 import NotFound from './pages/NotFound.jsx';
 import BusinessProvider from './contexts/business.jsx';
-import Checkout from './pages/Checkout/Checkout.jsx';
+// import Checkout from './pages/Checkout/Checkout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/:nameBussiness/checkout',
-    element: <Checkout />,
+    // element: <Checkout />,
   },
   {
     element: (

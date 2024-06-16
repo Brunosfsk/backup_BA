@@ -3,12 +3,20 @@ import { CartContext } from '../../contexts/cart';
 import ProductDetails from '../../components/ProductDetails';
 
 function Checkout() {
-  const { totalCart, cartItems } = useContext(CartContext);
+  const { totalCart = 0, cartItems = [] } = useContext(CartContext);
   const totalCompra = totalCart + 10;
+
+  const handleConfirmPedido = () => {
+    const modal = document.getElementById('modal_confirm_pedido');
+    if (modal) {
+      modal.showModal();
+    }
+  };
+
   return (
     <section className="h-dvh flex flex-col justify-between">
       <div className="w-full justify-center px-10 py-8">
-        <h1 className="text-4xl font-bold ">Detalhes do Pedido</h1>
+        <h1 className="text-4xl font-bold">Detalhes do Pedido</h1>
         <div className="divider"></div>
         <div className="flex w-full justify-around">
           <div className="flex flex-col flex-1 border-opacity-50">
@@ -50,19 +58,23 @@ function Checkout() {
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">
             <h3 className="text-xl">Resumo do Pedido</h3>
-            {cartItems.map((item, i) => {
-              return (
-                <ProductDetails
-                  key={i}
-                  id={item.id}
-                  photo_thumb={item.photo_thumb}
-                  name={item.name}
-                  qtd={item.qtd}
-                  price={item.price}
-                />
-              );
-            })}
-            <h2>Total pedido {totalCart}</h2>
+            {cartItems.map((item, i) => (
+              <ProductDetails
+                key={i}
+                id={item.id}
+                photo_thumb={item.photo_thumb}
+                name={item.name}
+                qtd={item.qtd}
+                price={item.price}
+              />
+            ))}
+            <h2>
+              Total pedido{' '}
+              {totalCart.toLocaleString('pt-br', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </h2>
             <h2 className="">Frete 10,00</h2>
           </div>
           <div className="divider divider-horizontal"></div>
@@ -116,16 +128,14 @@ function Checkout() {
                         value="Cartao"
                       />
                       <span className="label-text text-base w-full pl-3">
-                        Cartao
+                        Cartão
                       </span>
                     </label>
                   </div>
                 </div>
                 <button
                   className="btn btn-active bg-secondary text-w"
-                  onClick={() =>
-                    document.getElementById('modal_confirm_pedido').showModal()
-                  }
+                  onClick={handleConfirmPedido}
                 >
                   Confirmar pedido
                 </button>
@@ -137,18 +147,16 @@ function Checkout() {
         <dialog id="modal_confirm_pedido" className="modal">
           <div className="modal-box w-11/12 max-w-5xl flex flex-col gap-4">
             <h3 className="font-bold text-lg">Confirmar pedido</h3>
-            {cartItems.map((item, i) => {
-              return (
-                <ProductDetails
-                  key={i}
-                  id={item.id}
-                  photo_thumb={item.photo_thumb}
-                  name={item.name}
-                  qtd={item.qtd}
-                  price={item.price}
-                />
-              );
-            })}
+            {cartItems.map((item, i) => (
+              <ProductDetails
+                key={i}
+                id={item.id}
+                photo_thumb={item.photo_thumb}
+                name={item.name}
+                qtd={item.qtd}
+                price={item.price}
+              />
+            ))}
             <div className="modal-action">
               <form method="dialog">
                 <button className="btn bg-secondary text-w">Confirmar</button>

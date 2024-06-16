@@ -1,12 +1,15 @@
 import { createContext, useState } from 'react';
+import localStorageManager from '../services/localStorageManager';
 
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-  const [totalCart, setTotalCart] = useState(0);
-
-  console.log(cartItems);
+  const [cartItems, setCartItems] = useState(
+    localStorageManager.getItem('@Cart:items') || [],
+  );
+  const [totalCart, setTotalCart] = useState(
+    localStorageManager.getItem('@Cart:total') || 0,
+  );
 
   const addItemCart = (item) => {
     setCartItems((prevItems) => {
@@ -18,7 +21,9 @@ const CartProvider = ({ children }) => {
       }
       return [...prevItems, item];
     });
+    localStorageManager.setItem('@Cart:items', cartItems);
     setTotalCart((prevTotal) => Number(prevTotal) + Number(item.price));
+    localStorageManager.setItem('@Cart:total', totalCart);
   };
 
   const removeItemCart = (itemId) => {
@@ -31,10 +36,12 @@ const CartProvider = ({ children }) => {
       }
       return prevItems.filter((i) => i.id !== itemId);
     });
+    localStorageManager.setItem('@Cart:items', cartItems);
     setTotalCart((prevTotal) => {
       const item = cartItems.find((i) => i.id === itemId);
       return Number(prevTotal) - Number(item.price);
     });
+    localStorageManager.setItem('@Cart:total', totalCart);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/auth.jsx';
 
 const InputField = ({ label, type, placeholder, value, onChange }) => (
@@ -22,13 +22,14 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn, signed, error } = useContext(AuthContext);
+  const { nameBussiness } = useParams();
 
   const loginUser = async (e) => {
     e.preventDefault();
     await signIn({ email, password });
   };
 
-  if (signed) return <Navigate to="/" />;
+  if (signed) return <Navigate to={`/${nameBussiness}`} />;
 
   return (
     <div className="min-h-screen bg-base-200 w-vw">

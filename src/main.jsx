@@ -4,7 +4,6 @@ import './index.css';
 import Home from './pages/Home/Home';
 import { AuthProvider } from './contexts/auth';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import Checkout from './pages/Checkout/Checkout';
 import CartProvider from './contexts/cart';
 import CadastroProspcts from './pages/cadastroProspcts/CadastroProspcts';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -15,10 +14,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import PrivateRouteAdm from './routes/private/PrivateRouteAdm.jsx';
 import NotFound from './pages/NotFound.jsx';
 import BusinessProvider from './contexts/business.jsx';
+import Checkout from './pages/Checkout/Checkout.jsx';
 
 const router = createBrowserRouter([
   {
-    path: '',
+    path: '/:nameBussiness',
     element: (
       <BusinessProvider>
         <Home />
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/login',
+    path: '/:nameBussiness/login',
     element: (
       <BusinessProvider>
         <Login />
@@ -34,17 +34,17 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/cadastrar',
+    path: '/:nameBussiness/cadastrar',
     element: (
       <BusinessProvider>
         <SignUp />
       </BusinessProvider>
     ),
   },
-  // {
-  //   path: '/checkout',
-  //   element: <Checkout />,
-  // },
+  {
+    path: '/:nameBussiness/checkout',
+    element: <Checkout />,
+  },
   {
     element: (
       <BusinessProvider>

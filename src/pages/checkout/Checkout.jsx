@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart';
 import ProductDetails from '../../components/ProductDetails';
 
-function Checkout() {
+const Checkout = () => {
   const { totalCart = 0, cartItems = [] } = useContext(CartContext);
   const totalCompra = totalCart + 10;
 
@@ -167,6 +167,6 @@ function Checkout() {
       </div>
     </section>
   );
-}
+};
 
 export default Checkout;

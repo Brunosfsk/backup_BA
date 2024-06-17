@@ -1,21 +1,21 @@
-// import { useContext } from 'react';
-// import { CartContext } from '../../contexts/cart';
-// import ProductDetails from '../../components/ProductDetails';
+import { useContext } from 'react';
+import { CartContext } from '../../contexts/cart';
+import ProductDetails from '../../components/ProductDetails';
 
-const Checkout = () => {
-  // const { totalCart = 0, cartItems = [] } = useContext(CartContext);
-  // const totalCompra = totalCart + 10;
+const Checkout2 = () => {
+  const { totalCart = 0, cartItems = [] } = useContext(CartContext);
+  const totalCompra = totalCart + 10;
 
-  // const handleConfirmPedido = () => {
-  //   const modal = document.getElementById('modal_confirm_pedido');
-  //   if (modal) {
-  //     modal.showModal();
-  //   }
-  // };
+  const handleConfirmPedido = () => {
+    const modal = document.getElementById('modal_confirm_pedido');
+    if (modal) {
+      modal.showModal();
+    }
+  };
 
   return (
     <section className="h-dvh flex flex-col justify-between">
-      {/* <div className="w-full justify-center px-10 py-8">
+      <div className="w-full justify-center px-10 py-8">
         <h1 className="text-4xl font-bold">Detalhes do Pedido</h1>
         <div className="divider"></div>
         <div className="flex w-full justify-around">
@@ -135,7 +135,7 @@ const Checkout = () => {
                 </div>
                 <button
                   className="btn btn-active bg-secondary text-w"
-                  // onClick={handleConfirmPedido}
+                  onClick={handleConfirmPedido}
                 >
                   Confirmar pedido
                 </button>
@@ -164,9 +164,9 @@ const Checkout = () => {
             </div>
           </div>
         </dialog>
-      </div> */}
+      </div>
     </section>
   );
 };
 
-export default Checkout;
+export default Checkout2;

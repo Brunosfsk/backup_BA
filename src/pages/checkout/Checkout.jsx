@@ -6,12 +6,12 @@ const Checkout = () => {
   const { totalCart = 0, cartItems = [] } = useContext(CartContext);
   const totalCompra = totalCart + 10;
 
-  const handleConfirmPedido = () => {
-    const modal = document.getElementById('modal_confirm_pedido');
-    if (modal) {
-      modal.showModal();
-    }
-  };
+  // const handleConfirmPedido = () => {
+  //   const modal = document.getElementById('modal_confirm_pedido');
+  //   if (modal) {
+  //     modal.showModal();
+  //   }
+  // };
 
   return (
     <section className="h-dvh flex flex-col justify-between">
@@ -135,7 +135,7 @@ const Checkout = () => {
                 </div>
                 <button
                   className="btn btn-active bg-secondary text-w"
-                  onClick={handleConfirmPedido}
+                  // onClick={handleConfirmPedido}
                 >
                   Confirmar pedido
                 </button>

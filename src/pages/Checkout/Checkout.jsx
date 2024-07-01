@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { CartContext } from '../contexts/cart';
-import ProductDetails from '../components/ProductDetails';
+import { CartContext } from '../../contexts/cart';
+import ProductDetails from '../../components/ProductDetails';
 
 const Checkout = () => {
   const { totalCart = 0, cartItems = [] } = useContext(CartContext);

@@ -2,7 +2,7 @@ import DrawerCart from './DrawerCart';
 
 function Header({ titleHeader, qtd }) {
   return (
-    <div className="z-50 h-16 relative flex justify-between items-center px-16 py-2 bg-mutad text-white">
+    <div className="z-50 h-16 relative flex justify-between items-center px-16 py-4 text-white border-b border-mutad">
       <img src="/logoBA.png" className='h-full' alt="Logo Bairro Ativo" />
       <h2 className="text-2xl font-medium">{titleHeader}</h2>
       <DrawerCart qtd={qtd}/>

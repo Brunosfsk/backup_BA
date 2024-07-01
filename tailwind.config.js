@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
     extend: {
       backgroundImage: {
@@ -39,5 +40,8 @@ export default {
       }
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require('daisyui')
+  ],
 }
+

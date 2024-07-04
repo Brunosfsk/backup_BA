@@ -27,7 +27,7 @@ const CadastroProspcts = () => {
     if (!formData.proprietário) newErrors.proprietário = 'Proprietário é obrigatório';
     if (!formData.responsavel) newErrors.responsavel = 'Responsável é obrigatório';
     if (!formData.contato) newErrors.contato = 'Contato é obrigatório';
-    if (!/^\d{10,11}$/.test(formData.contato)) newErrors.contato = 'Contato deve ter 10-11 dígitos';
+    // if (!/^\d{10,11}$/.test(formData.contato)) newErrors.contato = 'Contato deve ter 10-11 dígitos';
     if (!formData.cidade) newErrors.cidade = 'Cidade é obrigatória';
     if (!formData.bairro) newErrors.bairro = 'Bairro é obrigatório';
     if (!formData.cep) newErrors.cep = 'CEP é obrigatório';

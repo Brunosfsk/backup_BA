@@ -6,8 +6,8 @@ import cadastrosLeads from '../../dados/cadastrosLeads';
 const Representantes = () => {
   // console.log(cadastrosLeads.map((item)=> {item.cidade} ))
 
-  const { comercio, id } = cadastrosLeads[0]
-  console.log(comercio, id)
+  const { comercio, id } = cadastrosLeads[0];
+  console.log(comercio, id);
   return (
     <div className="h-dvh flex flex-col justify-between ">
       <div className="flex justify-center items-start">
@@ -37,9 +37,8 @@ const Representantes = () => {
                 </tr>
               </thead>
               <tbody>
-                {cadastrosLeads.map((item) => {
-                  return (
-                  <tr>
+                {cadastrosLeads.map((item, i) => (
+                  <tr key={i}>
                     <th>{item.id}</th>
                     <td>{item.cidade}</td>
                     <td>{item.comercio}</td>
@@ -48,10 +47,7 @@ const Representantes = () => {
                     <td>12/16/2020</td>
                     <td>Blue</td>
                   </tr>
-                  )
-                }
-                )
-                }
+                ))}
               </tbody>
               {/* <tfoot>
                 <tr>

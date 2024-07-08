@@ -1,12 +1,13 @@
 import { useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useParams } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 
-const PrivateRouteAdm = ({ children }) => {
+const PrivateRouteAdm = () => {
   const { id } = useContext(AuthContext);
+  console.log(id);
   const { nameBussiness } = useParams();
 
-  return !id ? <Navigate to={`/${nameBussiness}`} /> : children;
+  return !id ? <Navigate to={`/${nameBussiness}`} /> : <Outlet />;
 };
 
 export default PrivateRouteAdm;

@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../../services/api";
+import localStorageManager from "../../services/localStorageManager";
 
 const ordersBussines = async () => {
-  const nameBussiness = "ativo"
+  const nameBussiness = localStorageManager.getItem('@Business:name')
   const r = await api.get('/get-orders', { params: { nameBussiness } })
     .then((res) => {
       return res.data

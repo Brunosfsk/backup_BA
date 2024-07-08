@@ -1,19 +1,20 @@
-import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
-import { useContext, createContext, useState } from "react"
+import { MoreVertical, ChevronLast, ChevronFirst } from 'lucide-react';
+import { useContext, createContext, useState } from 'react';
 
-const SidebarContext = createContext()
+const SidebarContext = createContext();
 
 export default function Sidebar({ children }) {
-  const [expanded, setExpanded] = useState(true)
-  
+  const [expanded, setExpanded] = useState(true);
+
   return (
     <aside className="h-screen">
       <nav className="h-full flex flex-col bg-white border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
-          <img src="/logoBA.png"
-          className={`overflow-hidden transition-all ${
-            expanded ? "w-20" : "w-0"
-          }`}
+          <img
+            src="/logoBA.png"
+            className={`overflow-hidden transition-all ${
+              expanded ? 'w-20' : 'w-0'
+            }`}
           />
           <button
             onClick={() => setExpanded((curr) => !curr)}
@@ -36,7 +37,7 @@ export default function Sidebar({ children }) {
           <div
             className={`
               flex justify-between items-center
-              overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"}
+              overflow-hidden transition-all ${expanded ? 'w-52 ml-3' : 'w-0'}
           `}
           >
             <div className="leading-4">
@@ -48,12 +49,12 @@ export default function Sidebar({ children }) {
         </div>
       </nav>
     </aside>
-  )
+  );
 }
 
 export function SidebarItem({ icon, text, active, alert }) {
-  const { expanded } = useContext(SidebarContext)
-  
+  const { expanded } = useContext(SidebarContext);
+
   return (
     <li
       className={`
@@ -62,15 +63,15 @@ export function SidebarItem({ icon, text, active, alert }) {
         transition-colors group
         ${
           active
-            ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
-            : "hover:bg-indigo-50 text-gray-600"
+            ? 'bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800'
+            : 'hover:bg-indigo-50 text-gray-600'
         }
     `}
     >
       {icon}
       <span
         className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0"
+          expanded ? 'w-52 ml-3' : 'w-0'
         }`}
       >
         {text}
@@ -78,7 +79,7 @@ export function SidebarItem({ icon, text, active, alert }) {
       {alert && (
         <div
           className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
-            expanded ? "" : "top-2"
+            expanded ? '' : 'top-2'
           }`}
         />
       )}
@@ -96,5 +97,5 @@ export function SidebarItem({ icon, text, active, alert }) {
         </div>
       )}
     </li>
-  )
+  );
 }

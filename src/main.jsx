@@ -46,14 +46,10 @@ const router = createBrowserRouter([
     element: <Checkout />,
   },
   {
-    element: (
-      <BusinessProvider>
-        <PrivateRouteAdm />
-      </BusinessProvider>
-    ),
+    element: <PrivateRouteAdm />,
     children: [
       {
-        path: '/cadastro-prospcts',
+        path: '/:nameBussiness/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
@@ -61,7 +57,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/dashboard',
+        path: '/:nameBussiness/dashboard',
         element: (
           <BusinessProvider>
             <Dashboard />
@@ -69,7 +65,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/representantes',
+        path: '/:nameBussiness/representantes',
         element: (
           <BusinessProvider>
             <Representantes />

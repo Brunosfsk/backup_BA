@@ -7,14 +7,17 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [id, setId] = useState(localStorage.getItem('@Auth:id'));
   const [email, setEmail] = useState(localStorage.getItem('@Auth:email'));
+  const [type, setType] = useState(localStorage.getItem('@Auth:type'));
   const [error, setError] = useState(null);
   const [loadingLogin, setLoadingLogin] = useState(false);
 
-  const saveAuthData = ({ id, email , token}) => {
+  const saveAuthData = ({ id, email, type, token }) => {
     setId(id);
     setEmail(email);
+    setType(type);
     localStorage.setItem('@Auth:id', id);
     localStorage.setItem('@Auth:email', email);
+    localStorage.setItem('@Auth:type', type);
     localStorage.setItem('@Auth:token', token);
   };
 
@@ -40,6 +43,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.clear();
     setId(null);
     setEmail(null);
+    setType(null);
     return <Navigate to="/login" />;
   };
 
@@ -48,6 +52,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         id,
         email,
+        type,
         signed: !!id,
         signIn,
         signOut,

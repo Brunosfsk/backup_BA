@@ -1,16 +1,46 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../../contexts/cart';
 import ProductDetails from '../../components/ProductDetails';
+import { useWhatsMessage } from '../../hooks/public/useWhatsMessage';
 
 const Checkout = () => {
   const { totalCart = 0, cartItems = [] } = useContext(CartContext);
   const totalCompra = totalCart + 10;
+
+  const [nomeCompleto, setNomeCompleto] = useState('');
+  const [email, setEmail] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [cep, setCep] = useState('');
+  const [rua, setRua] = useState('');
+  const [bairro, setBairro] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [formaPagamento, setFormaPagamento] = useState('');
+  const { mutate } = useWhatsMessage();
 
   const handleConfirmPedido = () => {
     const modal = document.getElementById('modal_confirm_pedido');
     if (modal) {
       modal.showModal();
     }
+  };
+
+  const handleSubmit = async () => {
+    const pedido = {
+      nomeCompleto,
+      email,
+      whatsapp,
+      endereco: {
+        cep,
+        rua,
+        bairro,
+        cidade,
+      },
+      formaPagamento,
+      itens: cartItems,
+      totalCompra,
+    };
+
+    await mutate({pedido});
   };
 
   return (
@@ -28,29 +58,67 @@ const Checkout = () => {
                     type="text"
                     className="grow"
                     placeholder="Nome Completo"
+                    value={nomeCompleto}
+                    onChange={(e) => setNomeCompleto(e.target.value)}
                   />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
-                  <input type="email" className="grow" placeholder="E-mail" />
+                  <input
+                    type="email"
+                    className="grow"
+                    placeholder="E-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
-                  <input type="text" className="grow" placeholder="Whatsapp" />
+                  <input
+                    type="text"
+                    className="grow"
+                    placeholder="Whatsapp"
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                  />
                 </label>
               </div>
               <div className="divider"></div>
               <div className="w-96 bg-base-100 flex flex-col gap-4">
                 <h3 className="text-xl">Endereço para Entrega</h3>
                 <label className="input input-bordered flex items-center gap-2">
-                  <input type="text" className="grow" placeholder="CEP" />
+                  <input
+                    type="text"
+                    className="grow"
+                    placeholder="CEP"
+                    value={cep}
+                    onChange={(e) => setCep(e.target.value)}
+                  />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
-                  <input type="text" className="grow" placeholder="Rua" />
+                  <input
+                    type="text"
+                    className="grow"
+                    placeholder="Rua"
+                    value={rua}
+                    onChange={(e) => setRua(e.target.value)}
+                  />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
-                  <input type="text" className="grow" placeholder="Bairro" />
+                  <input
+                    type="text"
+                    className="grow"
+                    placeholder="Bairro"
+                    value={bairro}
+                    onChange={(e) => setBairro(e.target.value)}
+                  />
                 </label>
                 <label className="input input-bordered flex items-center gap-2">
-                  <input type="text" className="grow" placeholder="Cidade" />
+                  <input
+                    type="text"
+                    className="grow"
+                    placeholder="Cidade"
+                    value={cidade}
+                    onChange={(e) => setCidade(e.target.value)}
+                  />
                 </label>
               </div>
             </div>
@@ -100,6 +168,8 @@ const Checkout = () => {
                         name="card-pgto"
                         className="radio"
                         value="Pix"
+                        checked={formaPagamento === 'Pix'}
+                        onChange={(e) => setFormaPagamento(e.target.value)}
                       />
                       <span className="label-text text-base w-full pl-3">
                         Pix
@@ -113,6 +183,8 @@ const Checkout = () => {
                         name="card-pgto"
                         className="radio"
                         value="Dinheiro"
+                        checked={formaPagamento === 'Dinheiro'}
+                        onChange={(e) => setFormaPagamento(e.target.value)}
                       />
                       <span className="label-text text-base w-full pl-3">
                         Dinheiro
@@ -126,6 +198,8 @@ const Checkout = () => {
                         name="card-pgto"
                         className="radio"
                         value="Cartao"
+                        checked={formaPagamento === 'Cartao'}
+                        onChange={(e) => setFormaPagamento(e.target.value)}
                       />
                       <span className="label-text text-base w-full pl-3">
                         Cartão
@@ -159,7 +233,12 @@ const Checkout = () => {
             ))}
             <div className="modal-action">
               <form method="dialog">
-                <button className="btn bg-secondary text-w">Confirmar</button>
+                <button
+                  className="btn bg-secondary text-w"
+                  onClick={handleSubmit}
+                >
+                  Confirmar
+                </button>
               </form>
             </div>
           </div>

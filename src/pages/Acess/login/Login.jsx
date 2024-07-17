@@ -42,7 +42,7 @@ function Login() {
             <img
               src="/logoBA.png"
               alt="Bairro Ativo"
-              className="w-32 self-start opacity-80"
+              className="w-24 md:w-32 self-start opacity-80"
             />
             <InputField
               label="Email"

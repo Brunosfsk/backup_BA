@@ -30,17 +30,11 @@ function ProductDetails({ id, name, price, photo_thumb, qtd, showBtn }) {
         <p>{qtd}</p>
         <div className="flex-1">
           <h3 className="text-lg font-semibold">{name}</h3>
-          <p className="text-gray-500">
+          <p className="text-gray-400/90">
             {new Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL',
             }).format(price)}
-          </p>
-          <p className="text-brack-800 text-lg mt-4 font-bold">
-            {new Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            }).format(price * qtd)}
           </p>
           {showBtn && (
             <div className="w-full flex justify-end">

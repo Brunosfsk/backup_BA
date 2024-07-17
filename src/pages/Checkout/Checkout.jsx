@@ -40,18 +40,18 @@ const Checkout = () => {
       totalCompra,
     };
 
-    await mutate({pedido});
+    await mutate({ pedido });
   };
 
   return (
     <section className="h-dvh flex flex-col justify-between">
-      <div className="w-full justify-center px-10 py-8">
+      <div className="w-full justify-center p-4 md:px-10 md:py-8 ">
         <h1 className="text-4xl font-bold">Detalhes do Pedido</h1>
         <div className="divider"></div>
-        <div className="flex w-full justify-around">
+        <div className="flex flex-col md:flex-row w-full justify-around">
           <div className="flex flex-col flex-1 border-opacity-50">
             <div>
-              <div className="w-96 bg-base-100 flex flex-col gap-4">
+              <div className="w-full md:w-96 bg-base-100 flex flex-col gap-4">
                 <h3 className="text-xl">Dados Pessoais</h3>
                 <label className="input input-bordered flex items-center gap-2">
                   <input
@@ -82,7 +82,7 @@ const Checkout = () => {
                 </label>
               </div>
               <div className="divider"></div>
-              <div className="w-96 bg-base-100 flex flex-col gap-4">
+              <div className="w-full md:w-96 bg-base-100 flex flex-col gap-4">
                 <h3 className="text-xl">Endereço para Entrega</h3>
                 <label className="input input-bordered flex items-center gap-2">
                   <input
@@ -124,7 +124,7 @@ const Checkout = () => {
             </div>
           </div>
           <div className="divider divider-horizontal"></div>
-          <div className="flex-1 bg-base-100 flex flex-col gap-4">
+          <div className="flex-1 bg-base-100 flex flex-col gap-2 md:gap-4 pt-5 md:pt-0">
             <h3 className="text-xl">Resumo do Pedido</h3>
             {cartItems.map((item, i) => (
               <ProductDetails
@@ -147,9 +147,9 @@ const Checkout = () => {
           </div>
           <div className="divider divider-horizontal"></div>
           <div className="flex-1 bg-base-100 flex flex-col gap-4">
-            <div className="flex flex-col w-fit border-opacity-50">
-              <div className="bg-base-100 flex flex-col gap-4">
-                <h2 className="text-2xl font-medium">Total</h2>
+            <div className="flex flex-col w-full md:w-fit border-opacity-50">
+              <div className="bg-base-100 flex md:flex-col w-full items-center gap-1 md:gap-4 font-bold max-md:pt-3">
+                <h2 className="text-2xl md:font-medium">Total:</h2>
                 <p className="text-xl">
                   {totalCompra.toLocaleString('pt-br', {
                     style: 'currency',

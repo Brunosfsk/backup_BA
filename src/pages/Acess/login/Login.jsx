@@ -29,7 +29,7 @@ function Login() {
     await signIn({ email, password });
   };
 
-  if (signed) return <Navigate to={`/${nameBussiness}`} />;
+  if (signed) return <Navigate to={`/${nameBussiness}/dashboard`} />;
 
   return (
     <div className="min-h-screen bg-base-200 w-vw">

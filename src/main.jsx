@@ -15,6 +15,7 @@ import PrivateRouteAdm from './routes/private/PrivateRouteAdm.jsx';
 import NotFound from './pages/NotFound.jsx';
 import BusinessProvider from './contexts/business.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
+import Stores from './pages/Dashboard/Stores/Stores.jsx';
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
         element: (
           <BusinessProvider>
             <Dashboard />
+          </BusinessProvider>
+        ),
+      },
+      {
+        path: '/:nameBussiness/dashboard/lojas',
+        element: (
+          <BusinessProvider>
+            <Stores />
           </BusinessProvider>
         ),
       },

@@ -20,7 +20,6 @@ const Dashboard = () => {
           </Link>
           <SidebarItem icon={<LineChart size={20} />} text={'Relatórios'} />
         </Sidebar>
-
         <NavBar />
       </div>
     </div>

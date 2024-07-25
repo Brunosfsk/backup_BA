@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react';
+import { Plus, SquarePen } from 'lucide-react';
 import { useOrdersBussines } from '../../../hooks/public/useOrdersBussines';
 
 const Stores = () => {
@@ -41,13 +41,14 @@ const Stores = () => {
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                   Catálogo
                 </th>
+                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"></th>
               </tr>
             </thead>
 
             <tbody>
               {orders &&
                 !orders.error &&
-                orders.map(({ id, name, price, photo_thumb }, i) => (
+                orders.map(({ category, name, price, photo_thumb }, i) => (
                   <tr key={i}>
                     <th className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap py-2 text-left text-blueGray-700 flex gap-1 items-center h-16">
                       <img
@@ -58,18 +59,20 @@ const Stores = () => {
                       <p>{name}</p>
                     </th>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
-                      Teste
+                      {category}
                     </td>
                     <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {price}
+                      {Number(price).toCurrency()}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <i className="fas fa-arrow-up text-emerald-500 mr-4"></i>
                       <input
                         type="checkbox"
                         className="toggle"
                         defaultChecked
                       />
+                    </td>
+                    <td>
+                      <SquarePen />
                     </td>
                   </tr>
                 ))}

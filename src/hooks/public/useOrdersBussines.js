@@ -4,15 +4,13 @@ import localStorageManager from "../../services/localStorageManager";
 
 const ordersBussines = async () => {
   const nameBussiness = localStorageManager.getItem('@Business:name')
-  const r = await api.get('/get-orders', { params: { nameBussiness } })
-    .then((res) => {
-      return res.data
-    })
-    .catch((error) => {
-      return error.response.data
-    })
-  console.log(r)
-  return r
+
+  try {
+    const response = await api.get('/orders', { params: { nameBussiness } })
+    return response.data
+  } catch (error) {
+    return error.response.data
+  }
 }
 
 

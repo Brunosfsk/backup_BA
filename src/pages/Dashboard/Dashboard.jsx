@@ -3,7 +3,7 @@ import NavBar from './Navbar/Navbar';
 import Sidebar, { SidebarItem } from './SideBar/Sidebar';
 import { Link, useParams } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
   const { nameBussiness } = useParams();
 
   return (
@@ -20,7 +20,10 @@ const Dashboard = () => {
           </Link>
           <SidebarItem icon={<LineChart size={20} />} text={'Relatórios'} />
         </Sidebar>
-        <NavBar />
+        <div className="flex flex-col flex-1">
+          <NavBar />
+          {children}
+        </div>
       </div>
     </div>
   );

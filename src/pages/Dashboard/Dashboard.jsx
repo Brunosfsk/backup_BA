@@ -12,9 +12,8 @@ const Dashboard = () => {
   });
 
   return (
-    <div className="h-dvh w-full flex bg-[#EEEEEE]">
-      <SidebarComp />
-      <div className="flex flex-col items-start w-full">
+    <>
+      <div className="flex flex-col items-start w-full bg-[#EEEEEE] h-full">
         <NavBar title="Dashboard" />
         <div className="grid grid-cols-4 grid-rows-3 gap-2 justify-center w-full ml-20">
           <Card
@@ -53,7 +52,7 @@ const Dashboard = () => {
         {/* <h1>Acompanhe o resumo dos seus resultados</h1> */}
       </div>
       <BtnSuportBug />
-    </div>
+    </>
   );
 };
 

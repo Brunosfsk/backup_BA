@@ -19,6 +19,7 @@ import Checkout from './pages/Checkout/Checkout.jsx';
 import Stores from './pages/Dashboard/Stores/Stores.jsx';
 import Promocoes from './pages/Promocoes/Body/Promocoes.jsx';
 import Relatorios from './pages/Relatorios/Relatorios.jsx';
+import LayoutADM from './pages/layouts/LayoutADM.jsx';
 
 const router = createBrowserRouter([
   {
@@ -46,16 +47,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/dashboard',
-    // element: <Dashboard />
-    element: (
-      <BusinessProvider>
-        <Dashboard />
-      </BusinessProvider>
-    ),
-  },
-  {
-    path: '/promocoes',
+    path: '/:nameBussiness/promocoes',
     element: (
       <BusinessProvider>
         <Promocoes />
@@ -78,20 +70,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/dashboard',
+        path: '/:nameBussiness/produtos',
         element: (
           <BusinessProvider>
-            <Dashboard></Dashboard>
-          </BusinessProvider>
-        ),
-      },
-      {
-        path: '/:nameBussiness/dashboard/produtos',
-        element: (
-          <BusinessProvider>
-            <Dashboard>
+            <LayoutADM>
               <Stores />
-            </Dashboard>
+            </LayoutADM>
           </BusinessProvider>
         ),
       },
@@ -104,7 +88,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/representantes',
+        path: '/:nameBussiness/representantes',
         // element: <Representantes />
         element: (
           <BusinessProvider>
@@ -113,7 +97,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/relatorios',
+        path: '/:nameBussiness/relatorios',
         element: (
           <BusinessProvider>
             <Relatorios />
@@ -121,10 +105,20 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/cadastro-prospcts',
+        path: '/:nameBussiness/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
+          </BusinessProvider>
+        ),
+      },
+      {
+        path: '/:nameBussiness/dashboard',
+        element: (
+          <BusinessProvider>
+            <LayoutADM>
+              <Dashboard />
+            </LayoutADM>
           </BusinessProvider>
         ),
       },

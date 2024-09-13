@@ -7,7 +7,7 @@ import { AuthProvider } from './contexts/auth';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CartProvider from './contexts/cart';
 import CadastroProspcts from './pages/cadastroProspcts/CadastroProspcts';
-import Dashboard from './pages/Dashboard/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import Representantes from './pages/Representantes/Representantes';
 import Login from './pages/Acess/login/Login.jsx';
 import SignUp from './pages/Acess/signUp/SignUp.jsx';
@@ -17,6 +17,8 @@ import NotFound from './pages/NotFound.jsx';
 import BusinessProvider from './contexts/business.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
 import Stores from './pages/Dashboard/Stores/Stores.jsx';
+import Promocoes from './pages/Promocoes/Body/Promocoes.jsx';
+import Relatorios from './pages/Relatorios/Relatorios.jsx';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,23 @@ const router = createBrowserRouter([
     element: (
       <BusinessProvider>
         <SignUp />
+      </BusinessProvider>
+    ),
+  },
+  {
+    path: '/dashboard',
+    // element: <Dashboard />
+    element: (
+      <BusinessProvider>
+        <Dashboard />
+      </BusinessProvider>
+    ),
+  },
+  {
+    path: '/promocoes',
+    element: (
+      <BusinessProvider>
+        <Promocoes />
       </BusinessProvider>
     ),
   },
@@ -84,7 +103,50 @@ const router = createBrowserRouter([
           </BusinessProvider>
         ),
       },
+      {
+        path: '/representantes',
+        // element: <Representantes />
+        element: (
+          <BusinessProvider>
+            <Representantes />
+          </BusinessProvider>
+        ),
+      },
+      {
+        path: '/relatorios',
+        element: (
+          <BusinessProvider>
+            <Relatorios />
+          </BusinessProvider>
+        ),
+      },
+      {
+        path: '/cadastro-prospcts',
+        element: (
+          <BusinessProvider>
+            <CadastroProspcts />
+          </BusinessProvider>
+        ),
+      },
     ],
+  },
+  {
+    element: (
+      <BusinessProvider>
+        <PrivateRouteAdm />
+      </BusinessProvider>
+    ),
+    // children: [
+    //   {
+    //     path: '/cadastro-prospcts',
+    //     element: (
+    //       <BusinessProvider>
+    //         <CadastroProspcts />
+    //       </BusinessProvider>
+    //     ),
+    //   },
+
+    // ],
   },
   {
     path: '*',

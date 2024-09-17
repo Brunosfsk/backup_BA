@@ -25,19 +25,19 @@ const CardProduto = ({ id, name, description, price, photo_thumb }) => {
   };
 
   return (
-    <Card className="max-w-60 flex flex-col justify-between">
-      <CardHeader>
+    <Card className="max-w-[48%] flex-1 flex-grow-1 flex-shrink-0 basis-[45%] md:max-w-60 flex flex-col justify-between">
+      <CardHeader className="max-md:py-2">
         <CardTitle>
-          <img src={photo_thumb} className="w-full" alt={name} />
+          <img src={photo_thumb} className="w-full p-0" alt={name} />
         </CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col gap-2">
-        <div className="flex gap-2 font-bold">
-          {name} <Badge>NEW</Badge>
+      <CardContent className="flex flex-col gap-2 max-md:p-2">
+        <div className="flex items-center gap-1 font-bold max-md:text-sm md:gap-2 ">
+          {name} <Badge className="max-md:text-xs px-1">NEW</Badge>
         </div>
         <p className="text-xs xl:text-sm">{description}</p>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="max-md:p-2">
         <Button onClick={addItem} className="w-full text-xs xl:text-sm">
           Adicionar ao carrinho
         </Button>

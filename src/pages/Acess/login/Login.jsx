@@ -70,7 +70,7 @@ function Login() {
                 <small className=" text-destructive">{error.error}</small>
               )}
               <Button className="w-full" onClick={login}>
-                Sign in
+                Acessar
               </Button>
             </CardFooter>
           </Card>

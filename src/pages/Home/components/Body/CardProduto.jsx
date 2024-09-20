@@ -1,14 +1,15 @@
 import { useContext } from 'react';
-import { CartContext } from '../../../../contexts/cart';
+import { CartContext } from '@/contexts/cart';
 import { Card } from '@/components/ui/card';
 import {
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../../../../components/ui/card';
-import { Badge } from '../../../../components/ui/badge';
-import { Button } from '../../../../components/ui/button';
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import '@/services/currency.js';
 
 const CardProduto = ({ id, name, description, price, photo_thumb }) => {
   const { addItemCart } = useContext(CartContext);

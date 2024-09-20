@@ -2,6 +2,17 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../../contexts/cart';
 import ProductDetails from '../../components/ProductDetails';
 import { useWhatsMessage } from '../../hooks/public/useWhatsMessage';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Separator } from '@/components/ui/separator';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const Checkout = () => {
   const { totalCart = 0, cartItems = [] } = useContext(CartContext);
@@ -15,13 +26,11 @@ const Checkout = () => {
   const [bairro, setBairro] = useState('');
   const [cidade, setCidade] = useState('');
   const [formaPagamento, setFormaPagamento] = useState('');
+  const [open, setOpen] = useState(false);
   const { mutate } = useWhatsMessage();
 
   const handleConfirmPedido = () => {
-    const modal = document.getElementById('modal_confirm_pedido');
-    if (modal) {
-      modal.showModal();
-    }
+    setOpen(true);
   };
 
   const handleSubmit = async () => {
@@ -41,186 +50,128 @@ const Checkout = () => {
     };
 
     await mutate({ pedido });
+    setOpen(false);
   };
 
   return (
-    <section className="h-dvh flex flex-col justify-between">
-      <div className="w-full justify-center p-4 md:px-10 md:py-8 ">
-        <h1 className="text-4xl font-bold">Detalhes do Pedido</h1>
-        <div className="divider"></div>
-        <div className="flex flex-col md:flex-row w-full justify-around">
-          <div className="flex flex-col flex-1 border-opacity-50">
-            <div>
-              <div className="w-full md:w-96 bg-base-100 flex flex-col gap-4">
-                <h3 className="text-xl">Dados Pessoais</h3>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="grow"
-                    placeholder="Nome Completo"
-                    value={nomeCompleto}
-                    onChange={(e) => setNomeCompleto(e.target.value)}
-                  />
-                </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="email"
-                    className="grow"
-                    placeholder="E-mail"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="grow"
-                    placeholder="Whatsapp"
-                    value={whatsapp}
-                    onChange={(e) => setWhatsapp(e.target.value)}
-                  />
-                </label>
-              </div>
-              <div className="divider"></div>
-              <div className="w-full md:w-96 bg-base-100 flex flex-col gap-4">
-                <h3 className="text-xl">Endereço para Entrega</h3>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="grow"
-                    placeholder="CEP"
-                    value={cep}
-                    onChange={(e) => setCep(e.target.value)}
-                  />
-                </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="grow"
-                    placeholder="Rua"
-                    value={rua}
-                    onChange={(e) => setRua(e.target.value)}
-                  />
-                </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="grow"
-                    placeholder="Bairro"
-                    value={bairro}
-                    onChange={(e) => setBairro(e.target.value)}
-                  />
-                </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="grow"
-                    placeholder="Cidade"
-                    value={cidade}
-                    onChange={(e) => setCidade(e.target.value)}
-                  />
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className="divider divider-horizontal"></div>
-          <div className="flex-1 bg-base-100 flex flex-col gap-2 md:gap-4 pt-5 md:pt-0">
-            <h3 className="text-xl">Resumo do Pedido</h3>
-            {cartItems.map((item, i) => (
-              <ProductDetails
-                key={i}
-                id={item.id}
-                photo_thumb={item.photo_thumb}
-                name={item.name}
-                qtd={item.qtd}
-                price={item.price}
+    <section className="flex flex-col justify-between h-dvd">
+      <div className="w-full p-4 md:px-10 md:py-8 h-full flex flex-col">
+        <h1 className="text-4xl font-bold flex-initial">Detalhes do Pedido</h1>
+        <Separator className="my-4 flex-initial" />
+        <div className="flex flex-col md:flex-row md:flex-1 w-full justify-around gap-6">
+          <div className="flex flex-col flex-1 h-full">
+            <div className="w-full md:w-96 flex flex-col gap-4">
+              <h3 className="text-xl">Dados Pessoais</h3>
+              <Input
+                type="text"
+                placeholder="Nome Completo"
+                value={nomeCompleto}
+                onChange={(e) => setNomeCompleto(e.target.value)}
               />
-            ))}
-            <h2>
-              Total pedido{' '}
-              {totalCart.toLocaleString('pt-br', {
-                style: 'currency',
-                currency: 'BRL',
-              })}
-            </h2>
-            <h2 className="">Frete 10,00</h2>
-          </div>
-          <div className="divider divider-horizontal"></div>
-          <div className="flex-1 bg-base-100 flex flex-col gap-4">
-            <div className="flex flex-col w-full md:w-fit border-opacity-50">
-              <div className="bg-base-100 flex md:flex-col w-full items-center gap-1 md:gap-4 font-bold max-md:pt-3">
-                <h2 className="text-2xl md:font-medium">Total:</h2>
-                <p className="text-xl">
-                  {totalCompra.toLocaleString('pt-br', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })}
-                </p>
-              </div>
-              <div className="divider"></div>
-              <div className="bg-base-100 flex flex-col gap-4">
-                <h3 className="text-xl">Forma de pagamento</h3>
-                <div className="flex flex-wrap gap-1">
-                  <div className="form-control">
-                    <label className="label cursor-pointer">
-                      <input
-                        type="radio"
-                        name="card-pgto"
-                        className="radio"
-                        value="Pix"
-                        checked={formaPagamento === 'Pix'}
-                        onChange={(e) => setFormaPagamento(e.target.value)}
-                      />
-                      <span className="label-text text-base w-full pl-3">
-                        Pix
-                      </span>
-                    </label>
-                  </div>
-                  <div className="form-control">
-                    <label className="label cursor-pointer">
-                      <input
-                        type="radio"
-                        name="card-pgto"
-                        className="radio"
-                        value="Dinheiro"
-                        checked={formaPagamento === 'Dinheiro'}
-                        onChange={(e) => setFormaPagamento(e.target.value)}
-                      />
-                      <span className="label-text text-base w-full pl-3">
-                        Dinheiro
-                      </span>
-                    </label>
-                  </div>
-                  <div className="form-control">
-                    <label className="label cursor-pointer">
-                      <input
-                        type="radio"
-                        name="card-pgto"
-                        className="radio"
-                        value="Cartao"
-                        checked={formaPagamento === 'Cartao'}
-                        onChange={(e) => setFormaPagamento(e.target.value)}
-                      />
-                      <span className="label-text text-base w-full pl-3">
-                        Cartão
-                      </span>
-                    </label>
-                  </div>
-                </div>
-                <button
-                  className="btn btn-active bg-secondary text-w"
-                  onClick={handleConfirmPedido}
-                >
-                  Confirmar pedido
-                </button>
-              </div>
+              <Input
+                type="email"
+                placeholder="E-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="Whatsapp"
+                value={whatsapp}
+                onChange={(e) => setWhatsapp(e.target.value)}
+              />
             </div>
+            <Separator className="my-4" />
+            <div className="w-full md:w-96 flex flex-col gap-4">
+              <h3 className="text-xl">Endereço para Entrega</h3>
+              <Input
+                type="text"
+                placeholder="CEP"
+                value={cep}
+                onChange={(e) => setCep(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="Rua"
+                value={rua}
+                onChange={(e) => setRua(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="Bairro"
+                value={bairro}
+                onChange={(e) => setBairro(e.target.value)}
+              />
+              <Input
+                type="text"
+                placeholder="Cidade"
+                value={cidade}
+                onChange={(e) => setCidade(e.target.value)}
+              />
+            </div>
+          </div>
+          <Separator className="my-4 md:hidden" />
+          <div className="flex-1 flex flex-col gap-4">
+            <h3 className="text-xl flex-initial">Resumo do Pedido</h3>
+            <ScrollArea className="flex-1 ">
+              <div className="h-full flex flex-col max-h-[650px] gap-2">
+                {cartItems.map((item, i) => (
+                  <ProductDetails
+                    key={i}
+                    id={item.id}
+                    photo_thumb={item.photo_thumb}
+                    name={item.name}
+                    qtd={item.qtd}
+                    price={item.price}
+                  />
+                ))}
+              </div>
+            </ScrollArea>
+          </div>
+          <Separator className="my-4 md:hidden" />
+          <div className="flex-1 flex flex-col gap-4">
+            <div className="flex gap-2 items-center text-xl">
+              <h3>Total pedido: </h3>
+              <p className="font-medium">
+                {totalCart.toLocaleString('pt-br', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </p>
+            </div>
+            <div className="flex gap-2 items-center text-lg">
+              <h3>Frete: </h3>
+              <p className="font-medium">10,00</p>
+            </div>
+
+            <h3 className="text-xl">Forma de pagamento</h3>
+            <RadioGroup
+              value={formaPagamento}
+              onValueChange={setFormaPagamento}
+              className="flex flex-wrap gap-2"
+            >
+              <RadioGroupItem value="Pix" id="pix" />
+              <label htmlFor="pix" className="ml-2">
+                Pix
+              </label>
+              <RadioGroupItem value="Dinheiro" id="dinheiro" />
+              <label htmlFor="dinheiro" className="ml-2">
+                Dinheiro
+              </label>
+              <RadioGroupItem value="Cartao" id="cartao" />
+              <label htmlFor="cartao" className="ml-2">
+                Cartão
+              </label>
+            </RadioGroup>
+            <Button onClick={handleConfirmPedido}>Confirmar pedido</Button>
           </div>
         </div>
 
-        <dialog id="modal_confirm_pedido" className="modal">
-          <div className="modal-box w-11/12 max-w-5xl flex flex-col gap-4">
-            <h3 className="font-bold text-lg">Confirmar pedido</h3>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Confirmar pedido</DialogTitle>
+            </DialogHeader>
             {cartItems.map((item, i) => (
               <ProductDetails
                 key={i}
@@ -231,18 +182,9 @@ const Checkout = () => {
                 price={item.price}
               />
             ))}
-            <div className="modal-action">
-              <form method="dialog">
-                <button
-                  className="btn bg-secondary text-w"
-                  onClick={handleSubmit}
-                >
-                  Confirmar
-                </button>
-              </form>
-            </div>
-          </div>
-        </dialog>
+            <Button onClick={handleSubmit}>Confirmar</Button>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );

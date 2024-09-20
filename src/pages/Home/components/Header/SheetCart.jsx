@@ -54,19 +54,21 @@ export default function SheetCart() {
       <SheetContent>
         <SheetHeader className="h-full">
           <SheetTitle>Carrinho</SheetTitle>
-          <SheetDescription className="flex flex-col gap-2 h-full">
+          <SheetDescription className="h-full flex flex-col gap-2">
             <ScrollArea className="flex-1">
-              {cartItems.map((item, i) => (
-                <ProductDetails
-                  showBtn
-                  key={i}
-                  id={item.id}
-                  photo_thumb={item.photo_thumb}
-                  name={item.name}
-                  qtd={item.qtd}
-                  price={item.price}
-                />
-              ))}
+              <div className="flex flex-col gap-2 h-full">
+                {cartItems.map((item, i) => (
+                  <ProductDetails
+                    showBtn
+                    key={i}
+                    id={item.id}
+                    photo_thumb={item.photo_thumb}
+                    name={item.name}
+                    qtd={item.qtd}
+                    price={item.price}
+                  />
+                ))}
+              </div>
             </ScrollArea>
             <div className="flex-initial min-h-32 flex flex-col gap-1">
               <OrderTotal totalCart={totalCart} />

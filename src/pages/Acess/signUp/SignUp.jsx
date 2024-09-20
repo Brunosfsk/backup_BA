@@ -1,73 +1,83 @@
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/auth';
-
-const InputField = ({ label, type, placeholder, value, onChange }) => (
-  <div className="form-control w-full">
-    <label className="label">
-      <span className="label-text">{label}</span>
-    </label>
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      className="input input-bordered"
-      required
-    />
-  </div>
-);
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signed } = useContext(AuthContext);
+  const { nameBussiness } = useParams();
 
   if (signed) return <Navigate to="/" />;
 
   return (
     <div className="min-h-screen bg-base-200 w-vw">
       <div className="flex flex-col lg:flex-row-reverse w-full h-dvh">
-        <div className="card shrink-0 shadow-2xl bg-base-100 flex-1 justify-center items-center">
-          <form className="card-body w-full max-w-sm justify-center items-center">
-            <img
-              src="/logoBA.png"
-              alt="Bairro Ativo"
-              className="w-32 self-start opacity-80"
-            />
-            <InputField
-              label="Nome"
-              type="text"
-              placeholder="João Silva"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <InputField
-              label="Email"
-              type="email"
-              placeholder="meuemail@email.com.br"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <InputField
-              label="Senha"
-              type="password"
-              placeholder="*******"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div className="form-control w-full mt-6">
-              <button className="btn btn-primary">Cadastrar</button>
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <Link to="/login" className="link link-hover">
-                  Já possui uma conta? Acesse aqui!
+        <div className="flex-1 flex justify-center items-center">
+          <Card className="w-full max-w-sm">
+            <CardHeader className="text-center">
+              <img
+                src="/logoBA.png"
+                alt="Bairro Ativo"
+                className="w-24 md:w-32 self-center opacity-80"
+              />
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  label="Nome"
+                  type="text"
+                  placeholder="João Silva"
+                  value={name}
+                  required
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="eu@exemplo.com"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="*******"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <Link
+                  to={`/${nameBussiness}/login`}
+                  className="text-xs text-muted-foreground"
+                >
+                  Já possui uma conta? Clique aqui!
                 </Link>
-              </label>
-            </div>
-          </form>
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col justify-start gap-0.5">
+              <Button className="w-full">Cadastrar</Button>
+            </CardFooter>
+          </Card>
         </div>
         <div className="text-center lg:text-left bg-red-100 flex-1 bg-signUp bg-cover bg-center"></div>
       </div>

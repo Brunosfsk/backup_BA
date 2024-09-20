@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        login: "url(/bg-login.jpg)",
+        signUp: "url(/bg-singup.jpg)"
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',

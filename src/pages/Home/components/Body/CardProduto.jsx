@@ -33,7 +33,8 @@ const CardProduto = ({ id, name, description, price, photo_thumb }) => {
       </CardHeader>
       <CardContent className="flex flex-col gap-2 max-md:p-2">
         <div className="flex items-center gap-1 font-bold max-md:text-sm md:gap-2 ">
-          {name} <Badge className="max-md:text-xs px-1">NEW</Badge>
+          {name}{' '}
+          <Badge className="max-md:text-xs px-1 bg-yellow-700">NEW</Badge>
         </div>
         <p className="text-xs xl:text-sm">{description}</p>
       </CardContent>

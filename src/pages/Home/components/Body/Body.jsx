@@ -1,8 +1,8 @@
-import { useOrdersBussines } from '../../../../hooks/public/useOrdersBussines';
+import { useOrdersGET } from '@/hooks/order/useOrdersGET';
 import CardProduto from './CardProduto';
 
 const Body = () => {
-  const { data: orders } = useOrdersBussines();
+  const { data: orders } = useOrdersGET();
   return (
     <div className="py-4 2xl:py-10 px-5 flex flex-wrap justify-between lg:justify-center gap-2 md:gap-4">
       {!orders?.error &&

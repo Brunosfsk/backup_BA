@@ -1,3 +1,4 @@
+import { ScrollArea } from '@/components/ui/scroll-area';
 import SidebarComp from '../../components/Sidebar/Sidebar';
 
 const LayoutADM = ({ children }) => {
@@ -5,7 +6,9 @@ const LayoutADM = ({ children }) => {
     <div className="h-dvh flex flex-col justify-between ">
       <div className="flex justify-center items-start">
         <SidebarComp />
-        <div className="flex flex-col flex-1 h-full">{children}</div>
+        <ScrollArea className="flex flex-col flex-1 h-dvh">
+          {children}
+        </ScrollArea>
       </div>
     </div>
   );

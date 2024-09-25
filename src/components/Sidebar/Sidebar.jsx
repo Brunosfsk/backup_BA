@@ -22,34 +22,34 @@ function SidebarComp() {
           <SidebarItem
             icon={<LayoutDashboard size={20} />}
             text={'Dashboard'}
-            onClick={() => navigate(`/${nameBussiness}/dashboard`)}
+            onClick={() => navigate(`/dashboard`)}
           />
           <SidebarItem
             icon={<Store size={20} />}
             text={'Minha Loja'}
-            onClick={() => navigate(`/${nameBussiness}/representantes`)}
+            onClick={() => navigate(`/representantes`)}
           />
           <SidebarItem
             icon={<CircleDollarSign size={20} />}
             text={'Financeiro'}
-            onClick={() => navigate(`/${nameBussiness}/relatorios`)}
+            onClick={() => navigate(`/relatorios`)}
           />
           <SidebarItem
             icon={<Settings size={20} />}
             text={'Configurações'}
-            onClick={() => navigate(`/${nameBussiness}/promocoes`)}
+            onClick={() => navigate(`/configuracoes`)}
           />
           <hr />
           <SidebarItem
             icon={<Users size={20} />}
             text={'Base Clientes'}
-            onClick={() => navigate(`/${nameBussiness}/representantes`)}
+            onClick={() => navigate(`/representantes`)}
           />
           {/* <SidebarItem icon={<Users size={20} />} text={'Representantes'} onClick={() => alert('ok')}/> */}
           <SidebarItem
             icon={<LineChart size={20} />}
             text={'Relatórios'}
-            onClick={() => navigate(`/${nameBussiness}/relatorios`)}
+            onClick={() => navigate(`/relatorios`)}
           />
         </Sidebar>
         {/* <NavBar /> */}

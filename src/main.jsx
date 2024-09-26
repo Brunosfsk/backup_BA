@@ -20,6 +20,7 @@ import Stores from './pages/Dashboard/Stores/Stores.jsx';
 import Promocoes from './pages/Promocoes/Body/Promocoes.jsx';
 import Relatorios from './pages/Relatorios/Relatorios.jsx';
 import LayoutADM from './pages/layouts/LayoutADM.jsx';
+import Configuracoes from './pages/Configuracoes/Configuracoes.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/:nameBussiness/login',
+    path: '/login',
     element: (
       <BusinessProvider>
         <Login />
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
     element: <PrivateRouteAdm />,
     children: [
       {
-        path: '/:nameBussiness/cadastro-prospcts',
+        path: '/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
@@ -80,7 +81,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/representantes',
+        path: '/representantes',
         element: (
           <BusinessProvider>
             <Representantes />
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/representantes',
+        path: '/representantes',
         // element: <Representantes />
         element: (
           <BusinessProvider>
@@ -97,7 +98,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/relatorios',
+        path: '/relatorios',
         element: (
           <BusinessProvider>
             <Relatorios />
@@ -105,7 +106,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/cadastro-prospcts',
+        path: '/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
@@ -113,11 +114,21 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/dashboard',
+        path: '/dashboard',
         element: (
           <BusinessProvider>
             <LayoutADM>
               <Dashboard />
+            </LayoutADM>
+          </BusinessProvider>
+        ),
+      },
+      {
+        path: '/configuracoes',
+        element: (
+          <BusinessProvider>
+            <LayoutADM>
+              <Configuracoes />
             </LayoutADM>
           </BusinessProvider>
         ),

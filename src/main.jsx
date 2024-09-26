@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/representantes',
+        path: '/:nameBussiness/representantes',
         element: (
           <BusinessProvider>
             <Representantes />
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/representantes',
+        path: '/:nameBussiness/representantes',
         // element: <Representantes />
         element: (
           <BusinessProvider>
@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/relatorios',
+        path: '/:nameBussiness/relatorios',
         element: (
           <BusinessProvider>
             <Relatorios />
@@ -106,7 +106,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/cadastro-prospcts',
+        path: '/:nameBussiness/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/dashboard',
+        path: '/:nameBussiness/dashboard',
         element: (
           <BusinessProvider>
             <LayoutADM>
@@ -124,7 +124,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/configuracoes',
+        path: '/:nameBussiness/configuracoes',
         element: (
           <BusinessProvider>
             <LayoutADM>

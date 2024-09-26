@@ -1,10 +1,10 @@
 import { MoreVertical, ChevronLast, ChevronFirst, LogOut } from 'lucide-react';
 import { useContext, createContext, useState } from 'react';
-import localStorageManager from '../../../services/localStorageManager'
+import localStorageManager from '../../../services/localStorageManager';
 
 const SidebarContext = createContext();
 
-const { signOut } = localStorageManager
+const { signOut } = localStorageManager;
 
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true);
@@ -47,7 +47,11 @@ export default function Sidebar({ children }) {
               <h4 className="font-semibold">John Doe</h4>
               <span className="text-xs text-gray-600">johndoe@gmail.com</span>
             </div>
-            <LogOut size={20} onClick={() => signOut()} className='cursor-pointer hover:text-red-600'/>
+            <LogOut
+              size={20}
+              onClick={() => signOut()}
+              className="cursor-pointer hover:text-red-600"
+            />
           </div>
         </div>
       </nav>

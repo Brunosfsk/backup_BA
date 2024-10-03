@@ -21,6 +21,8 @@ import Promocoes from './pages/Promocoes/Body/Promocoes.jsx';
 import Relatorios from './pages/Relatorios/Relatorios.jsx';
 import LayoutADM from './pages/layouts/LayoutADM.jsx';
 import Configuracoes from './pages/Configuracoes/Configuracoes.jsx';
+import { ThemeProvider } from './contexts/theme';
+import Cart from './pages/Cart/Cart';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       <BusinessProvider>
         <Promocoes />
       </BusinessProvider>
+    ),
+  },
+  {
+    path: '/:nameBussiness/carrinho',
+    element: (
+      <CartProvider>
+        <Cart />
+      </CartProvider>
     ),
   },
   {
@@ -172,13 +182,15 @@ const client = new QueryClient({
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <QueryClientProvider client={client}>
-    <AuthProvider>
-      <React.StrictMode>
-        <CartProvider>
-          <RouterProvider router={router} />
-        </CartProvider>
-      </React.StrictMode>
-    </AuthProvider>
-  </QueryClientProvider>,
+  <ThemeProvider>
+    <QueryClientProvider client={client}>
+      <AuthProvider>
+        <React.StrictMode>
+          <CartProvider>
+            <RouterProvider router={router} />
+          </CartProvider>
+        </React.StrictMode>
+      </AuthProvider>
+    </QueryClientProvider>
+  </ThemeProvider>,
 );

@@ -16,7 +16,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '../../../../components/ui/button';
 
 const OrderTotal = ({ totalCart }) => (
-  <h3>
+  <div>
     <span className="text-sm font-medium">Total do pedido</span>
     <br />
     <span className="text-4xl font-medium">
@@ -25,7 +25,7 @@ const OrderTotal = ({ totalCart }) => (
         currency: 'BRL',
       })}
     </span>
-  </h3>
+  </div>
 );
 
 const CartBadge = ({ itemCount }) => (
@@ -38,7 +38,7 @@ const CartBadge = ({ itemCount }) => (
         {itemCount}
       </Badge>
     )}
-    <ShoppingCart className="text-foreground" />
+    <ShoppingCart className="text-background" />
   </div>
 );
 
@@ -49,7 +49,19 @@ export default function SheetCart() {
   return (
     <Sheet>
       <SheetTrigger>
-        <CartBadge itemCount={cartItems.length} />
+        <Link to={`/${nameBussiness}/carrinho`}>
+          <div className="indicator z-0 relative">
+            {cartItems?.length > 0 && (
+              <Badge
+                variant="destructive"
+                className="indicator-item text-xs size-4 p-1 flex justify-center items-center absolute -right-2 -top-2"
+              >
+                {cartItems?.length}
+              </Badge>
+            )}
+            <ShoppingCart className="text-background" />
+          </div>
+        </Link>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader className="h-full">

@@ -1,18 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '@/contexts/cart';
-import { Card } from '@/components/ui/card';
-import {
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import '@/services/currency.js';
+import '@/services/currency.js';
+import { Drawer, DrawerContent, DrawerFooter } from '@/components/ui/drawer';
 
 const CardProduto = ({ id, name, description, price, photo_thumb }) => {
   const { addItemCart } = useContext(CartContext);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const addItem = () => {
     const item = {
@@ -23,28 +18,82 @@ const CardProduto = ({ id, name, description, price, photo_thumb }) => {
       qtd: 1,
     };
     addItemCart(item);
+    setIsDrawerOpen(false);
+  };
+
+  const openDrawer = () => {
+    setIsDrawerOpen(true);
   };
 
   return (
-    <Card className="max-w-[48%] flex-1 flex-grow-1 flex-shrink-0 basis-[45%] md:max-w-60 flex flex-col justify-between">
-      <CardHeader className="max-md:py-2">
-        <CardTitle>
-          <img src={photo_thumb} className="w-full p-0" alt={name} />
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-2 max-md:p-2">
-        <div className="flex items-center gap-1 font-bold max-md:text-sm md:gap-2 ">
-          {name}{' '}
-          <Badge className="max-md:text-xs px-1 bg-yellow-700">NEW</Badge>
+    <section className="flex flex-col items-center w-full md:w-[49%]">
+      <article
+        className="w-full flex gap-4 items-center border-y border-muted-foreground/80 py-2 cursor-pointer"
+        onClick={openDrawer}
+      >
+        <div className="flex flex-col gap-1 flex-1">
+          <div>
+            <h3 className="text-sm font-semibold text-primary">{name}</h3>
+            <p className="text-muted-foreground text-xs font-light">
+              {description}
+            </p>
+          </div>
+          <p className="text-sm font-semibold">
+            {Intl.NumberFormat('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            }).format(price)}
+          </p>
         </div>
-        <p className="text-xs xl:text-sm">{description}</p>
-      </CardContent>
-      <CardFooter className="max-md:p-2">
-        <Button onClick={addItem} className="w-full text-xs xl:text-sm">
-          Adicionar ao carrinho
-        </Button>
-      </CardFooter>
-    </Card>
+        <div className="relative flex-initial">
+          <picture>
+            <img
+              className="w-24 h-full object-cover rounded-md"
+              src={photo_thumb}
+            />
+          </picture>
+        </div>
+      </article>
+
+      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen} className="">
+        <DrawerContent
+          navHandler={false}
+          className="w-full max-w-screen-md m-auto"
+        >
+          <div className="space-y-4">
+            <picture>
+              <img
+                className="w-full h-auto object-cover rounded-b-[2.8rem]"
+                src={photo_thumb}
+                alt={name}
+              />
+            </picture>
+
+            <div className="px-4">
+              <h4 className="font-semibold text-lg">
+                {name?.charAt(0).toUpperCase() +
+                  name?.replace(name?.charAt(0), '')?.toLowerCase()}
+              </h4>
+              <p className="mt-1 text-gray-700">{description}</p>
+              <p className="font-bold mt-1">
+                {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(price)}
+              </p>
+            </div>
+          </div>
+          <DrawerFooter>
+            <Button
+              className="w-full"
+              onClick={addItem} // Função para adicionar ao carrinho
+            >
+              Adicionar ao Carrinho
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </section>
   );
 };
 

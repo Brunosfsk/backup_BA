@@ -1,12 +1,12 @@
 import Footer from '../../components/Footer';
 import Body from './components/Body/Body';
-import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
 
 const Home = () => {
   return (
-    <div className="h-dvh flex flex-col justify-between ">
+    <div className="h-dvh flex flex-col justify-between bg-background">
       <div>
-        <Header titleHeader="Seja Bem-Vindo" />
+        <Navbar />
         <Body />
       </div>
       <Footer />

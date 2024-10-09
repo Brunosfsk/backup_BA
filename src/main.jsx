@@ -42,7 +42,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: '/:nameBussiness/cadastrar',
+    path: '/cadastrar',
     element: (
       <BusinessProvider>
         <SignUp />
@@ -73,15 +73,7 @@ const router = createBrowserRouter([
     element: <PrivateRouteAdm />,
     children: [
       {
-        path: '/cadastro-prospcts',
-        element: (
-          <BusinessProvider>
-            <CadastroProspcts />
-          </BusinessProvider>
-        ),
-      },
-      {
-        path: '/:nameBussiness/produtos',
+        path: '/produtos',
         element: (
           <BusinessProvider>
             <LayoutADM>
@@ -91,7 +83,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/representantes',
+        path: '/representantes',
         element: (
           <BusinessProvider>
             <Representantes />
@@ -99,16 +91,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/representantes',
-        // element: <Representantes />
-        element: (
-          <BusinessProvider>
-            <Representantes />
-          </BusinessProvider>
-        ),
-      },
-      {
-        path: '/:nameBussiness/relatorios',
+        path: '/relatorios',
         element: (
           <BusinessProvider>
             <Relatorios />
@@ -116,7 +99,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/cadastro-prospcts',
+        path: '/cadastro-prospcts',
         element: (
           <BusinessProvider>
             <CadastroProspcts />
@@ -124,7 +107,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/dashboard',
+        path: '/dashboard',
         element: (
           <BusinessProvider>
             <LayoutADM>
@@ -134,7 +117,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/:nameBussiness/configuracoes',
+        path: '/configuracoes',
         element: (
           <BusinessProvider>
             <LayoutADM>

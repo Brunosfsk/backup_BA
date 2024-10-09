@@ -4,7 +4,6 @@ import { api } from '../../services/api';
 const addProduct = async (productData) => {
   try {
     const response = await api.post('/orders', productData);
-    console.log(response.data)
     return response.data;
   } catch (error) {
     return error.response.data

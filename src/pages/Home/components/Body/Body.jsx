@@ -8,9 +8,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import localStorageManager from '@/services/localStorageManager';
 
 const Body = () => {
-  const { data: orders } = useOrdersGET();
+  const bussinessName = localStorageManager.getItem('@Business:name');
+  const { data: orders } = useOrdersGET({ bussinessName });
   const [selectedCategory, setSelectedCategory] = useState('all-category');
 
   const ordersByCategory = orders?.reduce((acc, order) => {
@@ -26,7 +28,7 @@ const Body = () => {
 
   return (
     <section className="flex w-full md:gap-4 md:justify-center min-h-dvh">
-      <div className="py-4 2xl:py-10 px-5 flex flex-col gap-4 max-w-7xl">
+      <div className="py-4 2xl:py-10 px-5 flex flex-col gap-4 w-full max-w-7xl">
         <Select
           value={selectedCategory}
           onValueChange={(e) => setSelectedCategory(e)}
@@ -58,7 +60,7 @@ const Body = () => {
                   <h2 className="text-xl font-bold mb-2 uppercase">
                     {category_name}
                   </h2>
-                  <div className="flex flex-wrap gap-x-4">
+                  <div className="flex flex-wrap gap-x-4 lg:gap-3">
                     {ordersByCategory[category_name].map(
                       ({ id, name, description, price, photo_thumb }, i) => (
                         <CardProduto

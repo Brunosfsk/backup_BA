@@ -1,15 +1,21 @@
 import { Link, useParams } from 'react-router-dom';
 import SheetCart from './SheetCart';
+import { ThemeToggleMode } from '@/components/Theme/ThemeToggleMode';
 
 function Navbar() {
   const { nameBussiness } = useParams();
 
   return (
-    <nav className="z-50 h-16 w-full md:relative flex justify-between items-center px-4 2xl:px-16 py-4 text-white bg-foreground border-b border-mutad fixed bottom-0">
-      <Link to={`/${nameBussiness}`} className="h-full">
-        <img src="/logoBA.png" className="h-full" alt="Logo Bairro Ativo" />
-      </Link>
-      <SheetCart />
+    <nav className="flex justify-center z-50 h-16 w-full md:relative  px-4 2xl:px-16 py-4 bg-foreground dark:bg-muted border-b border-foreground dark:border-muted fixed bottom-0">
+      <div className="flex justify-between items-center w-full max-w-7xl">
+        <Link to={`/${nameBussiness}`} className="h-full">
+          <img src="/logoBA.png" className="h-full" alt="Logo Bairro Ativo" />
+        </Link>
+        <div className="flex gap-4 items-center">
+          <SheetCart />
+          <ThemeToggleMode />
+        </div>
+      </div>
     </nav>
   );
 }

@@ -1,13 +1,16 @@
 import { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { api } from '../services/api.js';
+import localStorageManager from '@/services/localStorageManager.js';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [id, setId] = useState(localStorage.getItem('@Auth:id'));
-  const [email, setEmail] = useState(localStorage.getItem('@Auth:email'));
-  const [type, setType] = useState(localStorage.getItem('@Auth:type'));
+  const [id, setId] = useState(localStorageManager.getItem('@Auth:id'));
+  const [email, setEmail] = useState(
+    localStorageManager.getItem('@Auth:email'),
+  );
+  const [type, setType] = useState(localStorageManager.getItem('@Auth:type'));
   const [error, setError] = useState(null);
   const [loadingLogin, setLoadingLogin] = useState(false);
 
@@ -15,10 +18,10 @@ export const AuthProvider = ({ children }) => {
     setId(id);
     setEmail(email);
     setType(type);
-    localStorage.setItem('@Auth:id', id);
-    localStorage.setItem('@Auth:email', email);
-    localStorage.setItem('@Auth:type', type);
-    localStorage.setItem('@Auth:token', token);
+    localStorageManager.setItem('@Auth:id', id);
+    localStorageManager.setItem('@Auth:email', email);
+    localStorageManager.setItem('@Auth:type', type);
+    localStorageManager.setItem('@Auth:token', token);
   };
 
   const handleAuthError = (err) => {
@@ -40,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = () => {
-    localStorage.clear();
+    localStorageManager.clear();
     setId(null);
     setEmail(null);
     setType(null);

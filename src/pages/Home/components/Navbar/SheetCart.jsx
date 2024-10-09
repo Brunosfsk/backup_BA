@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 import { CartContext } from '@/contexts/cart';
 import ProductDetails from '@/components/ProductDetails';
 import {
@@ -44,11 +45,12 @@ const CartBadge = ({ itemCount }) => (
 
 export default function SheetCart() {
   const { cartItems, totalCart } = useContext(CartContext);
-
   const { nameBussiness } = useParams();
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+
   return (
     <Sheet>
-      <SheetTrigger>
+      {isMobile ? (
         <Link to={`/${nameBussiness}/carrinho`}>
           <div className="indicator z-0 relative">
             {cartItems?.length > 0 && (
@@ -59,10 +61,24 @@ export default function SheetCart() {
                 {cartItems?.length}
               </Badge>
             )}
-            <ShoppingCart className="text-background" />
+            <ShoppingCart className="text-secondary dark:text-secondary-foreground" />
           </div>
         </Link>
-      </SheetTrigger>
+      ) : (
+        <SheetTrigger>
+          <div className="indicator z-0 relative">
+            {cartItems?.length > 0 && (
+              <Badge
+                variant="destructive"
+                className="indicator-item text-xs size-4 p-1 flex justify-center items-center absolute -right-2 -top-2"
+              >
+                {cartItems?.length}
+              </Badge>
+            )}
+            <ShoppingCart className="text-secondary dark:text-secondary-foreground" />
+          </div>
+        </SheetTrigger>
+      )}
       <SheetContent>
         <SheetHeader className="h-full">
           <SheetTitle>Carrinho</SheetTitle>

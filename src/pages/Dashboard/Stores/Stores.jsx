@@ -1,4 +1,11 @@
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
   Table,
   TableBody,
   TableCell,
@@ -10,13 +17,15 @@ import { Switch } from '@/components/ui/switch';
 import { useOrderPOST } from '@/hooks/order/useOrderPOST';
 import { useOrdersGET } from '@/hooks/order/useOrdersGET';
 import AddProductForm from './components/AddProductForm';
-import { BusinessContext } from '@/contexts/business';
-import { useContext } from 'react';
 import { useOrderPATCH } from '@/hooks/order/useOrderPATCH';
+import { useState } from 'react';
 
 const Stores = () => {
-  const { id } = useContext(BusinessContext);
-  const { data: orders } = useOrdersGET({ active: null });
+  const [bussinessID, setBussinessID] = useState(null);
+  const { data: orders } = useOrdersGET({
+    active: null,
+    bussinessID,
+  });
   const {
     mutate: mutateADD,
     isPending: isPendingADD,
@@ -42,19 +51,31 @@ const Stores = () => {
   return (
     <div className="p-4 h-dvh">
       <section className="relative flex flex-col min-w-0 break-words w-full rounded">
-        <article className="rounded-t mb-0 px-4 py-3 border-0">
+        <article className="rounded-t mb-0 py-3 border-0">
           <div className="flex flex-wrap items-center">
-            <div className="relative w-full px-2 max-w-full flex-grow flex-1">
+            <div className="relative w-full max-w-full flex-grow flex-1 space-y-2">
+              <Select onValueChange={setBussinessID}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Escolha um negócio" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="1">Ativo</SelectItem>
+                  <SelectItem value="2">não tem 2</SelectItem>
+                  <SelectItem value="3">não tem 2</SelectItem>
+                </SelectContent>
+              </Select>
               <h3 className="font-semibold text-base">Produtos</h3>
             </div>
-            <div className="relative w-full px-4 max-w-full flex-grow flex-1 text-right flex justify-end">
-              <AddProductForm
-                message={dataADD?.error}
-                isPending={isPendingADD}
-                onSubmit={(data) =>
-                  handleAddProduct({ ...data, id_business: id })
-                }
-              />
+            <div className="relative w-full max-w-full flex-grow flex-1 text-right flex justify-end">
+              {bussinessID && (
+                <AddProductForm
+                  message={dataADD?.error}
+                  isPending={isPendingADD}
+                  onSubmit={(data) =>
+                    handleAddProduct({ ...data, bussinessID })
+                  }
+                />
+              )}
             </div>
           </div>
         </article>

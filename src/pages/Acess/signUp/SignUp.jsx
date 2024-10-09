@@ -1,4 +1,4 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../contexts/auth';
 import {
@@ -16,7 +16,6 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signed } = useContext(AuthContext);
-  const { nameBussiness } = useParams();
 
   if (signed) return <Navigate to="/" />;
 
@@ -66,10 +65,7 @@ const SignUp = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <Link
-                  to={`/${nameBussiness}/login`}
-                  className="text-xs text-muted-foreground"
-                >
+                <Link to={`/login`} className="text-xs text-muted-foreground">
                   Já possui uma conta? Clique aqui!
                 </Link>
               </div>

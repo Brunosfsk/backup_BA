@@ -10,19 +10,20 @@ import {
 import { Label } from '@/components/ui/label.jsx';
 import { Input } from '@/components/ui/input.jsx';
 import { Button } from '@/components/ui/button.jsx';
+import localStorageManager from '@/services/localStorageManager.js';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn, signed, error } = useContext(AuthContext);
-  const { nameBussiness } = useParams();
 
   const login = async (e) => {
     e.preventDefault();
     await signIn({ email, password });
   };
 
-  if (signed) return <Navigate to={`/${nameBussiness}/dashboard`} />;
+  const token = localStorageManager.getItem('@Auth:token');
+  if (token) return <Navigate to={`/dashboard`} />;
 
   return (
     <div className="min-h-screen bg-base-200 w-vw">
@@ -58,7 +59,7 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <Link
-                  to={`/${nameBussiness}/cadastrar`}
+                  to={`/cadastrar`}
                   className="text-xs text-muted-foreground"
                 >
                   Não possui conta? Crie aqui!

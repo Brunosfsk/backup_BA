@@ -6,7 +6,7 @@ const business = async (nameBussiness) => {
     const response = await api.get(`/business/${nameBussiness}`)
     return response.data
   } catch (error) {
-    return error.response.data
+    throw error.response.data
   }
 }
 

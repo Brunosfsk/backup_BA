@@ -1,13 +1,13 @@
-import { MoreVertical, ChevronLast, ChevronFirst, LogOut } from 'lucide-react';
+import { ChevronLast, ChevronFirst, LogOut } from 'lucide-react';
 import { useContext, createContext, useState } from 'react';
-import localStorageManager from '../../../services/localStorageManager';
+import { AuthContext } from '@/contexts/auth';
 
 const SidebarContext = createContext();
 
-const { signOut } = localStorageManager;
-
 export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true);
+
+  const { signOut } = useContext(AuthContext);
 
   return (
     <aside className="h-screen">

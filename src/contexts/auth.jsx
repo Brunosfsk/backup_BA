@@ -10,18 +10,23 @@ export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState(
     localStorageManager.getItem('@Auth:email'),
   );
+  const [nameURL, setNameURL] = useState(
+    localStorageManager.getItem('@Auth:name_url'),
+  );
   const [type, setType] = useState(localStorageManager.getItem('@Auth:type'));
   const [error, setError] = useState(null);
   const [loadingLogin, setLoadingLogin] = useState(false);
 
-  const saveAuthData = ({ id, email, type, token }) => {
+  const saveAuthData = ({ id, email, type, token, name_url }) => {
     setId(id);
     setEmail(email);
     setType(type);
+    setNameURL(name_url);
     localStorageManager.setItem('@Auth:id', id);
     localStorageManager.setItem('@Auth:email', email);
     localStorageManager.setItem('@Auth:type', type);
     localStorageManager.setItem('@Auth:token', token);
+    localStorageManager.setItem('@Auth:name_url', name_url);
   };
 
   const handleAuthError = (err) => {
@@ -56,6 +61,7 @@ export const AuthProvider = ({ children }) => {
         id,
         email,
         type,
+        nameURL,
         signed: !!id,
         signIn,
         signOut,

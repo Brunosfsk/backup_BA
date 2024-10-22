@@ -23,37 +23,30 @@ function SidebarComp() {
             onClick={() => navigate(`/dashboard`)}
           />
           <SidebarItem
-            icon={<ShoppingCart size={20} />}
-            text={'Produtos'}
-            onClick={() => navigate(`/produtos`)}
-          />
-          <SidebarItem
             icon={<Store size={20} />}
             text={'Minha Loja'}
-            onClick={() => navigate(`/representantes`)}
+            onClick={() => navigate(`/minha-loja`)}
           />
-          <SidebarItem
+          {/* <SidebarItem
             icon={<CircleDollarSign size={20} />}
             text={'Financeiro'}
             onClick={() => navigate(`/relatorios`)}
-          />
+          /> */}
           <SidebarItem
             icon={<Settings size={20} />}
             text={'Configurações'}
             onClick={() => navigate(`/configuracoes`)}
           />
-          <hr />
-          <SidebarItem
+          {/* <SidebarItem
             icon={<Users size={20} />}
             text={'Base Clientes'}
             onClick={() => navigate(`/representantes`)}
           />
-          {/* <SidebarItem icon={<Users size={20} />} text={'Representantes'} onClick={() => alert('ok')}/> */}
           <SidebarItem
             icon={<LineChart size={20} />}
             text={'Relatórios'}
             onClick={() => navigate(`/relatorios`)}
-          />
+          /> */}
         </Sidebar>
         {/* <NavBar /> */}
       </div>

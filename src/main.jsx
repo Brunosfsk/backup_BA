@@ -73,7 +73,7 @@ const router = createBrowserRouter([
     element: <PrivateRouteAdm />,
     children: [
       {
-        path: '/produtos',
+        path: '/minha-loja',
         element: (
           <BusinessProvider>
             <LayoutADM>

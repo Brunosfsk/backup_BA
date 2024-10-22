@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { CartContext } from '../../contexts/cart';
 import ProductDetails from '../../components/ProductDetails';
-import { useWhatsMessage } from '../../hooks/public/useWhatsMessage';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -13,6 +12,7 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useTelegramPOST } from '@/hooks/telegram/useTelegramPOST';
 
 const Checkout = () => {
   const { totalCart = 0, cartItems = [] } = useContext(CartContext);
@@ -27,30 +27,49 @@ const Checkout = () => {
   const [cidade, setCidade] = useState('');
   const [formaPagamento, setFormaPagamento] = useState('');
   const [open, setOpen] = useState(false);
-  const { mutate } = useWhatsMessage();
+  const {
+    mutate: mutateTelegramPOST,
+    isPending,
+    isSuccess,
+    isError,
+  } = useTelegramPOST(); // Use the hook
 
   const handleConfirmPedido = () => {
     setOpen(true);
   };
 
   const handleSubmit = async () => {
-    const pedido = {
-      nomeCompleto,
-      email,
-      whatsapp,
-      endereco: {
-        cep,
-        rua,
-        bairro,
-        cidade,
+    const telegramData = {
+      dadosLoja: {
+        nomeLoja: "Buno Pizza's",
+        numeroLoja: '11986413385',
       },
-      formaPagamento,
-      itens: cartItems,
-      totalCompra,
+      dadosPessoais: {
+        nome: nomeCompleto,
+        email: email,
+        tel: whatsapp,
+      },
+      endereco: {
+        rua: rua,
+        complemento: '', // Add complemento if available
+        cep: cep,
+        bairro: bairro,
+        cidade: cidade,
+      },
+      dadosPedido: {
+        pedidos: cartItems.map((item) => ({
+          pedido: item.name,
+          descricao: '', // Add description if available
+          qtd: item.qtd,
+          valor: item.price,
+        })),
+        valorPedidos: totalCart,
+        entrega: 10.0,
+        totalPedido: totalCompra,
+        tipoPgto: formaPagamento,
+      },
     };
-
-    await mutate({ pedido });
-    setOpen(false);
+    mutateTelegramPOST(telegramData);
   };
 
   return (
@@ -182,7 +201,19 @@ const Checkout = () => {
                 price={item.price}
               />
             ))}
-            <Button onClick={handleSubmit}>Confirmar</Button>
+            <Button onClick={handleSubmit} loading={isPending}>
+              Confirmar
+            </Button>
+            {isSuccess && (
+              <p className="text-green-500 mt-1">
+                Pedido realizado com sucesso!
+              </p>
+            )}
+            {isError && (
+              <p className="text-destructive mt-1">
+                Erro ao efetuar pedido, tente novamente.
+              </p>
+            )}
           </DialogContent>
         </Dialog>
       </div>

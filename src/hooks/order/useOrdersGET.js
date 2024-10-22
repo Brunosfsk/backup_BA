@@ -1,15 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import { api } from "../../services/api";
+import { useQuery } from '@tanstack/react-query';
+import { api } from '../../services/api';
 
 const orders = async (data) => {
   try {
-    const response = await api.get('/orders', { params: { active: true, ...data } })
-    return response.data
+    const response = await api.get('/orders', {
+      params: { active: true, ...data },
+    });
+    return response.data;
   } catch (error) {
-    return error.response.data
+    throw error.response.data;
   }
-}
-
+};
 
 export function useOrdersGET(data) {
   const queryKey = ['ordersGET', data ? JSON.stringify(data) : 'all'];
@@ -19,8 +20,8 @@ export function useOrdersGET(data) {
     ...(data && { enabled: Boolean(Object.keys(data).length) }),
     refetchInterval: 1000 * 60 * 4,
     cacheTime: 1000 * 60 * 15,
-    staleTime: 1000 * 60 * 8
-  })
+    staleTime: 1000 * 60 * 8,
+  });
 
-  return query
+  return query;
 }

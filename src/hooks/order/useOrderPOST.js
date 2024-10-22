@@ -6,7 +6,7 @@ const addProduct = async (productData) => {
     const response = await api.post('/orders', productData);
     return response.data;
   } catch (error) {
-    return error.response.data
+    throw error.response.data;
   }
 };
 

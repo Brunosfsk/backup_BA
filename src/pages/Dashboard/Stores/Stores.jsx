@@ -18,13 +18,18 @@ import { useOrderPOST } from '@/hooks/order/useOrderPOST';
 import { useOrdersGET } from '@/hooks/order/useOrdersGET';
 import AddProductForm from './components/AddProductForm';
 import { useOrderPATCH } from '@/hooks/order/useOrderPATCH';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '@/contexts/auth';
+import { useBusinesssGET } from '@/hooks/bussiness/useBusinesssGET';
 
 const Stores = () => {
   const [bussinessID, setBussinessID] = useState(null);
+  const { nameURL, type } = useContext(AuthContext);
+  const { data: rolesBussiness } = useBusinesssGET();
+
   const { data: orders } = useOrdersGET({
     active: null,
-    bussinessID,
+    ...(bussinessID ? { bussinessID } : { bussinessName: nameURL }),
   });
   const {
     mutate: mutateADD,
@@ -54,16 +59,20 @@ const Stores = () => {
         <article className="rounded-t mb-0 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1 space-y-2">
-              <Select onValueChange={setBussinessID}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Escolha um negócio" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="1">Ativo</SelectItem>
-                  <SelectItem value="2">não tem 2</SelectItem>
-                  <SelectItem value="3">não tem 2</SelectItem>
-                </SelectContent>
-              </Select>
+              {type == 0 && (
+                <Select onValueChange={setBussinessID}>
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Escolha um negócio" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {rolesBussiness?.map(({ id, url }) => (
+                      <SelectItem key={id} value={id}>
+                        {url}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
               <h3 className="font-semibold text-base">Produtos</h3>
             </div>
             <div className="relative w-full max-w-full flex-grow flex-1 text-right flex justify-end">

@@ -2,7 +2,7 @@ import './index.css';
 import './services/currency.js';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Home from './pages/Home/Home.jsx';
+import Catalog from './pages/Catalog/Catalog.jsx';
 import { AuthProvider } from './contexts/auth.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import CartProvider from './contexts/cart.jsx';
@@ -23,13 +23,22 @@ import LayoutADM from './pages/layouts/LayoutADM.jsx';
 import Configuracoes from './pages/Configuracoes/Configuracoes.jsx';
 import { ThemeProvider } from './contexts/theme';
 import Cart from './pages/Cart/Cart';
+import Home from './pages/Home/Home';
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: (
+      <BusinessProvider>
+        <Home />
+      </BusinessProvider>
+    ),
+  },
   {
     path: '/:nameBussiness',
     element: (
       <BusinessProvider>
-        <Home />
+        <Catalog />
       </BusinessProvider>
     ),
   },

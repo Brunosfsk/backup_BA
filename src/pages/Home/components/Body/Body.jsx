@@ -8,11 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import localStorageManager from '@/services/localStorageManager';
 
 const Body = () => {
-  const bussinessName = localStorageManager.getItem('@Business:name');
-  const { data: orders } = useOrdersGET({ bussinessName });
+  const { data: orders } = useOrdersGET({ combo: true });
   const [selectedCategory, setSelectedCategory] = useState('all-category');
 
   const ordersByCategory = orders?.reduce((acc, order) => {

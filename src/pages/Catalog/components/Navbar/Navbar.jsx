@@ -13,7 +13,7 @@ function Navbar() {
         </Link>
         <div className="flex gap-4 items-center">
           <SheetCart />
-          <ThemeToggleMode />
+          {/* <ThemeToggleMode /> */}
         </div>
       </div>
     </nav>

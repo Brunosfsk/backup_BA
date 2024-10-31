@@ -97,9 +97,11 @@ const Stores = () => {
                 <TableHead>Categoria</TableHead>
                 <TableHead>Preço</TableHead>
                 <TableHead>Catálogo</TableHead>
+                <TableHead>Combo</TableHead>
                 <TableHead></TableHead>
               </TableRow>
             </TableHeader>
+            {console.log(orders)}
 
             <TableBody>
               {orders &&
@@ -115,6 +117,7 @@ const Stores = () => {
                       photo_thumb,
                       description,
                       active,
+                      combo
                     },
                     i,
                   ) => (
@@ -139,6 +142,14 @@ const Stores = () => {
                           defaultChecked={active}
                           onCheckedChange={(active) =>
                             handleEditProduct({ id, active })
+                          }
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Switch
+                          defaultChecked={combo}
+                          onCheckedChange={(combo) =>
+                            handleEditProduct({ id, combo })
                           }
                         />
                       </TableCell>

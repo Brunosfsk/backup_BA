@@ -12,8 +12,8 @@ function Navbar() {
           <img src="/logoBA.png" className="h-full" alt="Logo Bairro Ativo" />
         </Link>
         <div className="flex gap-4 items-center">
-          <SheetCart />
-          <ThemeToggleMode />
+          {/* <SheetCart /> */}
+          {/* <ThemeToggleMode /> */}
         </div>
       </div>
     </nav>

@@ -1,13 +1,17 @@
 import { useContext, useState } from 'react';
-import { CartContext } from '@/contexts/cart';
 import { Button } from '@/components/ui/button';
 import '@/services/currency.js';
 import '@/services/currency.js';
 import { Drawer, DrawerContent, DrawerFooter } from '@/components/ui/drawer';
+import { useNavigate } from 'react-router-dom';
+import { CartHomeContext } from '@/contexts/cartHome';
+import { useMediaQuery } from 'react-responsive';
 
 const CardProduto = ({ id, name, description, price, photo_thumb }) => {
-  const { addItemCart } = useContext(CartContext);
+  const { addItemCart } = useContext(CartHomeContext);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const addItem = () => {
     const item = {
@@ -19,6 +23,9 @@ const CardProduto = ({ id, name, description, price, photo_thumb }) => {
     };
     addItemCart(item);
     setIsDrawerOpen(false);
+    if (isMobile) {
+      navigate(`/carrinho`);
+    }
   };
 
   const openDrawer = () => {

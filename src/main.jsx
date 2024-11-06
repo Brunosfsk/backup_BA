@@ -24,16 +24,30 @@ import Configuracoes from './pages/Configuracoes/Configuracoes.jsx';
 import { ThemeProvider } from './contexts/theme';
 import Cart from './pages/Cart/Cart';
 import Home from './pages/Home/Home';
+import CartHome from './pages/CartHome/CartHome';
+import CartHomeProvider from './contexts/cartHome.jsx';
+import CheckoutHome from './pages/CheckoutHome/CheckoutHome';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: (
-      <BusinessProvider>
-        <Home />
-      </BusinessProvider>
-    ),
+    Component: CartHomeProvider,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/carrinho',
+        element: <CartHome />,
+      },
+
+      {
+        path: '/checkout',
+        element: <CheckoutHome />,
+      },
+    ],
   },
+
   {
     path: '/:nameBussiness',
     element: (

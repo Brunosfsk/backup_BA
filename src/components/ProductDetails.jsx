@@ -39,7 +39,7 @@ function ProductDetails({ id, name, price, photo_thumb, qtd, showBtn }) {
             }).format(price * qtd)}
           </p>
         </div>
-        {showBtn && (
+        {false && (
           <div className="flex items-center gap-2 border border-muted-foreground/30 rounded-lg px-1 py-1">
             <button
               className="text-muted-foreground p-0.5 transition-all flex items-center justify-center text-base font-bold rounded-md"

@@ -1,14 +1,8 @@
 import { useOrdersGET } from '@/hooks/order/useOrdersGET';
 import CardProduto from './CardProduto';
 import { useState } from 'react';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import localStorageManager from '@/services/localStorageManager';
+import MenuScroll from '@/components/MenuScroll/MenuScroll';
 
 const Body = () => {
   const bussinessName = localStorageManager.getItem('@Business:name');
@@ -29,24 +23,9 @@ const Body = () => {
   return (
     <section className="flex w-full md:gap-4 md:justify-center min-h-dvh">
       <div className="py-4 2xl:py-10 px-5 flex flex-col gap-4 w-full max-w-7xl">
-        <Select
-          value={selectedCategory}
-          onValueChange={(e) => setSelectedCategory(e)}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Todas as Categorias" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all-category">Todas as Categorias</SelectItem>
-            {categories.map((category) => (
-              <SelectItem key={category} value={category}>
-                {category}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <MenuScroll />
 
-        <div className="pb-4 flex flex-wrap gap-x-4 justify-between md:justify-start">
+         <div className="pb-4 flex flex-wrap gap-x-4 justify-between md:justify-start">
           {!orders?.error &&
             ordersByCategory &&
             Object.keys(ordersByCategory)
@@ -76,7 +55,7 @@ const Body = () => {
                   </div>
                 </div>
               ))}
-        </div>
+        </div> 
       </div>
     </section>
   );

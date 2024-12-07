@@ -26,19 +26,19 @@ const CardProduto = ({ id, name, description, price, photo_thumb }) => {
   };
 
   return (
-    <section className="flex flex-col items-center w-full md:w-[49%]">
+    <section className="flex flex-col items-center w-full md:w-[49%] bg-[#F5F7F8] rounded-2xl shadow-md">
       <article
-        className="w-full flex gap-4 items-center border-y lg:border lg:px-4 lg:rounded-lg border-muted-foreground/80 py-2 cursor-pointer"
+        className="w-full flex gap-4 items-center lg:px-4 lg:rounded-lg border-muted-foreground/80 py-2 cursor-pointer p-2"
         onClick={openDrawer}
       >
         <div className="flex flex-col gap-1 flex-1">
           <div>
-            <h3 className="text-sm font-semibold text-primary">{name}</h3>
-            <p className="text-muted-foreground text-xs font-light">
+            <h3 className="text-sm font-semibold text-red-600">{name}</h3>
+            <p className="text-[#373A40] text-xs font-light">
               {description}
             </p>
           </div>
-          <p className="text-sm font-semibold">
+          <p className="text-sm font-semibold text-black">
             {Intl.NumberFormat('pt-BR', {
               style: 'currency',
               currency: 'BRL',

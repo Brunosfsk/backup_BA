@@ -222,3 +222,5 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+// https://viacep.com.br/ws/09721000/json
